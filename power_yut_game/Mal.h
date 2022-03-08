@@ -5,14 +5,20 @@ using namespace std;
 class Mal
 {
 private:
-	int team; // ÆÀ
-	int number; //¹øÈ£
-	int y, x; // y x ¸»ÆÇ¿¡¼­ ÁÂÇ¥
-	bool isChild; //º»ÀÎÀÌ ÀÚ½ÄÀÎÁö ¾Æ´ÑÁö
-	bool life; // »ıÁ¸¿©ºÎ
-	Mal *child; // ÀÚ½Ä
+	int team; // íŒ€
+	int number; //ë²ˆí˜¸
+	int y, x; // y x ë§íŒì—ì„œ ì¢Œí‘œ
+	bool isChild; //ë³¸ì¸ì´ ìì‹ì¸ì§€ ì•„ë‹Œì§€
+	bool life; // ìƒì¡´ì—¬ë¶€
+	Mal *child; // ìì‹
 
 public:
+
+	int getNum();
+	int getTeam();
+	int getY();
+	int getX();
+	int getChild_Cnt();
 
 	void setTeam(int input);
 	void setPos(int inputY, int inputX);
@@ -21,11 +27,6 @@ public:
 	void setChild(Mal *input);
 	void setNum(int input);
 
-	int getNum();
-	int getTeam();
-	int getY();
-	int getX();
-	int getChild_Cnt();
 
 	bool getIsChild();
 	bool getlife();

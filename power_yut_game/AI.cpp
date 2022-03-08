@@ -18,18 +18,17 @@ int AI::getSelectMal(Player &player, Board &board ,int yut_num){
 		// 말만 선택하면 이동은 상관없음
 	}
 
-
 	int max_num = 1;
 	int max_val = 0;
+
 	for (int idx = 0; idx < list.size(); idx++) {
 		int move_val = getMoveValue( list[idx], board, yut_num); // 이동길이에 따른 가중치
-		int child_val = getChildValue(list[idx]);
-		int team_val = getTeamValue(list[idx], board, yut_num);
+		int child_val = getChildValue(list[idx]); // 자식유무에 따른 가중치
+		int team_val = getTeamValue(list[idx], board, yut_num); // 상대편말, 우리팀말 겹치기 가중치
 
 		val_list[idx].second += move_val;
 		val_list[idx].second += child_val;
 		val_list[idx].second += team_val;
-
 
 
 		if (max_val <= val_list[idx].second) {
@@ -37,10 +36,9 @@ int AI::getSelectMal(Player &player, Board &board ,int yut_num){
 			max_num = val_list[idx].first;
 		}
 	}
+
 	return max_num;
 }
-
-
 
 int AI::getMoveValue(Mal *mal, Board& board,int yut_num) {
 	pair<int,int> p = board.getMovePoint(mal->getY(), mal->getX(), yut_num);
@@ -107,11 +105,11 @@ int AI::getTeamValue(Mal* mal, Board& board, int yut_num){
 
 	if (bp.getMalPoint() != NULL) {
 		if (mal->getTeam() != bp.getMalPoint()->getTeam()) { // 다른 팀 말이 있다면
-			cout << "상대편 말을 잡는 쪽을 선택" << endl;
+			cout << "상대편 말을 잡는 방향을 선택" << endl;
 			return 20;
 		}
 		else { // 같은 팀 말이 있다면
-			cout << "같은 팀 말과 합치는 쪽을 선택" << endl;
+			cout << "같은 팀 말과 합치는 방향을 선택" << endl;
 			return 10;
 		}
 	}

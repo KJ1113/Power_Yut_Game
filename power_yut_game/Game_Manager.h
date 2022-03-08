@@ -11,35 +11,36 @@ using namespace std;
 
 class Game_Manager{
 private:
-	int team; // ÇöÀç ÁøÇàÁßÀÎ ÆÀ, ÅÏ
-	int yut_num; // À·
+	int team; // í˜„ì¬ ì§„í–‰ì¤‘ì¸ íŒ€, í„´
+	int yut_num; // ìœ·
 	int redTeamScore;
 	int blueTeamScore;
 
 
-	IOhandler iohandler; // ÀÔÃâ·Â ¸Å´ÏÀú
-	Board board; // ¸»ÆÇ
-	Player player[2]; // ÇÃ·¹ÀÌ¾î
-	AI ai; // Å·°øÁö´É
+	IOhandler iohandler; // ì…ì¶œë ¥ ë§¤ë‹ˆì €
+	Board board; // ë§íŒ
+	Player player[2]; // í”Œë ˆì´ì–´
+	AI ai; // í‚¹ê³µì§€ëŠ¥
 
 
 public:
-	int do_Gae_Girl_Yut_Mo(); // µµ°³°ÉÀ·¸ğ ·£´ı»ı¼º
-	int getScore(int team); // ¸» ÀÌµ¿ÈÄ Á¡¼ö °è»ê
-
 	
-	void playerInit(int size); // ÃÖÃÊ ½ÇÇà½Ã ÇÃ·¹ÀÌ¾î ¸» ¹øÈ£ ÃÊ±âÈ­
-	void runPlay(); // ¸ŞÀÎÈ­¸é ½ÇÇà
-	void singlePlay(); // ½Ì±ÛÇÃ·¹ÀÌ ½ÇÇà
-	void AIPlay();
+	int getScore(int team); // ë§ ì´ë™í›„ ì ìˆ˜ ê³„ì‚°
 
-	int select_Mal(int team); // ÀÌµ¿ÇÏ°í ½ÍÀº ¸»¼±ÅÃ, int ·Î ¸» ¹øÈ£¸¦ ¹İÈ¯ÇÔ
-	int select_AIMal(int team, int mal_num);
-	int select_Yut(bool AIselect); // ¸»¼±ÅÃ UI, ÀÔ·Â ±â´É , ÆÄ¶ó¹ÌÅÍ·Î ai À¯¹«°Ë»ç
+	void runPlay(); // ë©”ì¸í™”ë©´ ì‹¤í–‰
+	void singlePlay(); // ì‹±ê¸€í”Œë ˆì´ ì‹¤í–‰
+	void AIPlay(); // ì¸ê³µì§€ëŠ¥ í”Œë ˆì´ 
+
+	int select_Mal(int team); // ì´ë™í•˜ê³  ì‹¶ì€ ë§ì„ íƒ, int ë¡œ ë§ ë²ˆí˜¸ë¥¼ ë°˜í™˜í•¨
+	int select_Mal_AI(int team, int mal_num); //AI ë§ì„ íƒ
+	int select_Yut(bool AImode); // ë§ì„ íƒ UI, ì…ë ¥ ê¸°ëŠ¥ , íŒŒë¼ë¯¸í„°ë¡œ ai ìœ ë¬´ê²€ì‚¬
 
 
-	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // ÀÌµ¿À§Ä¡°¡ °áÁ¤µÇ¸é, ÀÌµ¿À¯¹«¸¦ ÆÇº°ÇÏ¿© ¾Ë·ÁÁÜ
+	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // ì´ë™ìœ„ì¹˜ê°€ ê²°ì •ë˜ë©´, ì´ë™ìœ ë¬´ë¥¼ íŒë³„í•˜ì—¬ ì•Œë ¤ì¤Œ
 	bool endGame_Check();
+
+	int do_Gae_Girl_Yut_Mo(); // ë„ê°œê±¸ìœ·ëª¨ ëœë¤ìƒì„±
+	void playerInit(int size); // ìµœì´ˆ ì‹¤í–‰ì‹œ í”Œë ˆì´ì–´ ë§ ë²ˆí˜¸ ì´ˆê¸°í™”
 
 	Game_Manager();
 	~Game_Manager();

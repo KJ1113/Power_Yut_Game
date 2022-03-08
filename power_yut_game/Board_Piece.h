@@ -12,11 +12,14 @@ public:
 	bool getIsMove();
 	Mal* getMalPoint();
 
+	void setMal(Mal* tmp);
+	void setIsMove(bool input);
+
+
 	void connectPoint(Mal* tmp, Mal* m);
 	void linkedPoint(Mal* m);
 	void disConnectPoint(Mal* m);
-	void setMal(Mal* tmp);
-	void setIsMove(bool input);
+	
 
 	Board_Piece();
 	~Board_Piece();

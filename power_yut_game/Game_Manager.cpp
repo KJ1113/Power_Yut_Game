@@ -36,7 +36,6 @@ void Game_Manager::singlePlay() {
 	team = 0; // 팀 & 턴 
 	while (true) {
 		system("cls");
-		if (endGame_Check()) break; // 승리 조건 검사
 		yut_num = select_Yut(false);
 
 		while (true) { // 말 선택 -> 말 이동 프로세스
@@ -44,6 +43,8 @@ void Game_Manager::singlePlay() {
 			bool move_possible = move_Mal(team, select_Mal_Idx,false); // 말 이동
 			if (move_possible) break;
 		}
+
+		if (endGame_Check()) break; // 승리 조건 검사
 
 		
 		while (true){
@@ -58,9 +59,14 @@ void Game_Manager::singlePlay() {
 			}
 			Sleep(1000);
 		}
-		
 
-		team = (team + 1) % 2;
+		if (yut_num == 4 || yut_num == 3) {
+			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
+			team = team;
+		}
+		else {
+			team = (team + 1) % 2;
+		}
 	}
 }
 
@@ -68,7 +74,6 @@ void Game_Manager::AIPlay() {
 	team = 0; // 팀 & 턴 
 	while (true) {
 		system("cls");
-		if (endGame_Check()) break; // 승리 조건 검사
 		
 		int mal_num;
 		int select_Mal_Idx;
@@ -88,9 +93,7 @@ void Game_Manager::AIPlay() {
 			while (true) {
 				mal_num = ai.getSelectMal(player[1], board, yut_num);
 				Sleep(2000);
-				select_Mal_Idx = select_AIMal(team, mal_num);
-
-
+				select_Mal_Idx = select_Mal_AI(team, mal_num);
 
 				Sleep(250);
 				move_possible = move_Mal(team, select_Mal_Idx, true); // 말 이동
@@ -98,6 +101,8 @@ void Game_Manager::AIPlay() {
 				if (move_possible) break;
 			}
 		}
+
+		if (endGame_Check()) break; // 승리 조건 검사
 
 		while (true) {
 			char iChar;
@@ -112,7 +117,14 @@ void Game_Manager::AIPlay() {
 			Sleep(1000);
 		}
 
-		team = (team + 1) % 2;
+
+		if (yut_num == 4 || yut_num == 3) {
+			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
+			team = team;
+		}
+		else {
+			team = (team + 1) % 2;
+		}
 	}
 }
 
@@ -124,7 +136,7 @@ int Game_Manager::select_Mal(int team) {
 	return iohandler.selectMal(player[team]); // 이동하고싶은 말 선택
 }
 
-int Game_Manager::select_AIMal(int team , int mal_num) {
+int Game_Manager::select_Mal_AI(int team , int mal_num) {
 	system("cls");
 	iohandler.showScore(redTeamScore, blueTeamScore);
 	iohandler.showBoard(board, team, yut_num);
@@ -134,9 +146,9 @@ int Game_Manager::select_AIMal(int team , int mal_num) {
 
 
 
-int Game_Manager::select_Yut(bool AIselect) {
+int Game_Manager::select_Yut(bool AImode) {
 
-	if (AIselect) {
+	if (AImode) {
 		int time = 0;
 		while (true) {
 			system("cls");
