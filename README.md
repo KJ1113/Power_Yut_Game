@@ -26,7 +26,7 @@
 * 참외
 * 포도
 
-``` 
+``` c++ 
 int main() {
 
 	// start game
@@ -35,6 +35,4 @@ int main() {
 
 	return 0;
 }
-
-
 ```
