@@ -1,4 +1,4 @@
-# power_yut_game
+# Power_Yut_Game
 
 # 제목1 
 ## 제목2
