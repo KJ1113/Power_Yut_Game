@@ -8,4 +8,5 @@ public:
 	int getSelectMal(Player& player, Board& board, int yut_num);
 	int getMoveValue(Mal*mal, Board& board, int yut_num);
 
+	//git commit test
 };
