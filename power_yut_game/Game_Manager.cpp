@@ -18,12 +18,12 @@ void Game_Manager::runPlay() {
 			break;
 		case 3:
 			system("cls");
-			cout << "게임을 종료합니다." << endl;
-			stop = true;
+			AIPlay();
 			break;
 		case 4:
 			system("cls");
-			AIPlay();
+			cout << "게임을 종료합니다." << endl;
+			stop = true;
 			break;
 		default:
 			cout << "잘못 입력하였습니다." << endl;

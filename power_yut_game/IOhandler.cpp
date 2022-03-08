@@ -30,8 +30,8 @@ int IOhandler::StartMenu(){
 	cout << "               ------------------------------------------                   " << endl;
 	cout << "               |             1. 싱글 플레이             |                   " << endl;
 	cout << "               |             2. 멀티 플레이             |                   " << endl;
-	cout << "               |             4.   AI 플레이             |                   " << endl;
-	cout << "               |             3.    종료                 |                   " << endl;
+	cout << "               |             3.   AI 플레이             |                   " << endl;
+	cout << "               |             4.    종료                 |                   " << endl;
 	cout << "               ------------------------------------------                   " << endl;
 	cout << " 숫자로 입력해주세요 : ";
 	cin >> num;

@@ -28,6 +28,7 @@ int AI::getSelectMal(Player &player, Board &board ,int yut_num){
 
 		val_list[idx].second += move_val;
 		val_list[idx].second += child_val;
+		val_list[idx].second += team_val;
 
 
 
