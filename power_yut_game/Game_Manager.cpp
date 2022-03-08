@@ -63,6 +63,7 @@ void Game_Manager::singlePlay() {
 		if (yut_num == 4 || yut_num == 3) {
 			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
 			team = team;
+			Sleep(1000);
 		}
 		else {
 			team = (team + 1) % 2;
@@ -121,6 +122,7 @@ void Game_Manager::AIPlay() {
 		if (yut_num == 4 || yut_num == 3) {
 			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
 			team = team;
+			Sleep(1000);
 		}
 		else {
 			team = (team + 1) % 2;
