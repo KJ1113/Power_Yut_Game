@@ -307,9 +307,7 @@ void Board::lastPiece_check(Mal* point_mal){
 	if (point_mal != NULL) {
 		point_mal->setLife(false);
 		point_mal->setPos(-2,-2);
-		if (point_mal->getPointChild() != NULL) {
-			lastPiece_check(point_mal->getPointChild());
-		}
+		lastPiece_check(point_mal->getPointChild());
 	}
 }
 

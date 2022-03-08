@@ -186,12 +186,8 @@ bool Game_Manager::move_Mal(int team, int select_Mal_Idx , bool AImode) {
 	int move_possible = 0;
 	pair<int, int> move_point = board.getMovePoint(cY, cX, yut_num);
 	
-	if (AImode) { // 이동
-		move_possible = iohandler.selectAIMove(player[team].getMal(select_Mal_Idx), board, move_point);
-	}
-	else {
-		move_possible = iohandler.selectMove(player[team].getMal(select_Mal_Idx), board, move_point);
-	}
+	if (AImode) move_possible = iohandler.selectAIMove(player[team].getMal(select_Mal_Idx), board, move_point);
+	else move_possible = iohandler.selectMove(player[team].getMal(select_Mal_Idx), board, move_point);
 
 
 	if (move_possible == 0) { // 다시 선택
