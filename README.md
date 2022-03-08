@@ -25,3 +25,16 @@
   * 수박이 박수 
 * 참외
 * 포도
+
+``` 
+int main() {
+
+	// start game
+	Game_Manager gm;
+	gm.runPlay();
+
+	return 0;
+}
+
+
+```
