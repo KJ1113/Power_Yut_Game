@@ -205,6 +205,27 @@ int IOhandler::selectAIMove(Mal& mal, Board& board, pair<int, int> move_point){
 	return 1;
 }
 
+int IOhandler::selectServer(){
+	int input = 0 ;
+	cout << "방장은 0, 참여자는 1 를 입력해주세요. (종료 : -1) : ";
+	cin >> input;
+
+	while (true) {
+		if (input == 0) {
+			return 0;
+		}
+		else if (input == 1) {
+			return 1;
+		}
+		else if (input == -1) {
+			return -1;
+		}
+		else {
+			cout << "잘못 입력하셨습니다. " << endl;
+		}
+	}
+}
+
 void IOhandler::showTurn(int turn){
 	if (turn == 0) {
 		textcolor(LIGHTRED, BLACK);

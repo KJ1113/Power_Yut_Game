@@ -92,6 +92,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>ws2_32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,6 +147,7 @@
     <ClInclude Include="Mal.h" />
     <ClInclude Include="Board_Piece.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="TCP_Network.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
@@ -156,6 +158,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mal.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="TCP_Network.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

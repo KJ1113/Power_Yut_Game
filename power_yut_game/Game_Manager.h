@@ -1,8 +1,10 @@
 #pragma once
+#include "TCP_Network.h"
 #include "Board.h"
 #include "Player.h"
 #include "IOhandler.h"
 #include "AI.h"
+
 #include <conio.h>
 #include <windows.h>
 #include <time.h>
@@ -21,7 +23,7 @@ private:
 	Board board; // 말판
 	Player player[2]; // 플레이어
 	AI ai; // 킹공지능
-
+	TCP_Network tcp_net; // 네트워크 접속
 
 public:
 	
@@ -29,11 +31,13 @@ public:
 
 	void runPlay(); // 메인화면 실행
 	void singlePlay(); // 싱글플레이 실행
+	void multiPlay();
 	void AIPlay(); // 인공지능 플레이 
 
 	int select_Mal(int team); // 이동하고 싶은 말선택, int 로 말 번호를 반환함
 	int select_Mal_AI(int team, int mal_num); //AI 말선택
 	int select_Yut(bool AImode); // 말선택 UI, 입력 기능 , 파라미터로 ai 유무검사
+
 
 
 	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // 이동위치가 결정되면, 이동유무를 판별하여 알려줌

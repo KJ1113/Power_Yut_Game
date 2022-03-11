@@ -14,6 +14,9 @@ public :
 	int selectMove(Mal &mal, Board& board ,pair<int, int> move_point);
 	int selectAIMal(Player& p , int num);
 	int selectAIMove(Mal& mal, Board& board, pair<int, int> move_point);
+	int selectServer();
+
+
 
 	// Output
 	void showBoard(Board& board, int turn, int yut);
