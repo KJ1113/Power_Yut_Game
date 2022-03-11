@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <windows.h>
+#include <conio.h>
+#include <windows.h>
 #include "Board.h"
 #include "Player.h"
 using namespace std;
@@ -15,8 +17,7 @@ public :
 	int selectAIMal(Player& p , int num);
 	int selectAIMove(Mal& mal, Board& board, pair<int, int> move_point);
 	int selectServer();
-
-
+	void nextTurn(int redTeamScore, int blueTeamScore, Board& board, int team, int yut_num);
 
 	// Output
 	void showBoard(Board& board, int turn, int yut);
@@ -31,5 +32,6 @@ public :
 	void showBoardPiece(int i , int j);
 	void showSelectPossible(Player& p);
 
+	// Color
 	void textcolor(int foreground, int background);
 };

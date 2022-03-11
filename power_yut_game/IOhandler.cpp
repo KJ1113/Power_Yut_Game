@@ -226,6 +226,21 @@ int IOhandler::selectServer(){
 	}
 }
 
+void IOhandler::nextTurn( int redTeamScore , int blueTeamScore, Board& board,int team ,int yut_num){
+	while (true) {
+		char iChar;
+		system("cls");
+		showScore(redTeamScore, blueTeamScore);
+		showBoard(board, team, yut_num);
+		cout << "Enter key를 누르면 다음턴이 진행됩니다.." << endl;
+		if (_kbhit()) {
+			iChar = _getch();
+			if (iChar == '\r') break;
+		}
+		Sleep(1000);
+	}
+}
+
 void IOhandler::showTurn(int turn){
 	if (turn == 0) {
 		textcolor(LIGHTRED, BLACK);

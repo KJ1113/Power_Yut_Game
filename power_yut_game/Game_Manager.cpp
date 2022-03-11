@@ -36,47 +36,19 @@ void Game_Manager::runPlay() {
 void Game_Manager::multiPlay() {
 	system("cls");
 	int server_or_client = iohandler.selectServer();
-
-	if (server_or_client == 0) {
-		tcp_net.serverMode();
-	}
-	else {
-		tcp_net.clientMode();
-	}
+	if (server_or_client == 0) tcp_net.serverModeOn();
+	else tcp_net.clientModeOn();
 	
-	//debug
 	cout << "연결성공.. 곧게임이 시작됩니다." << endl;
 	Sleep(2000);
 
-	team = 0;
 	while (true) {
 		system("cls");
-		int select_Mal_Idx = -1;
-		bool move_possible = false;
 
 		if (team == server_or_client) {
-			yut_num = select_Yut(false);
-
-			while (true) { // 말 선택 -> 말 이동 프로세스
-				select_Mal_Idx = select_Mal(team); // 말 선택
-				move_possible = move_Mal(team, select_Mal_Idx, false); // 말 이동
-				if (move_possible) break;
-			}
-
+			PlayProcess(false);
 			if (endGame_Check()) break; // 승리 조건 검사
-
-			while (true) {
-				char iChar;
-				system("cls");
-				iohandler.showScore(redTeamScore, blueTeamScore);
-				iohandler.showBoard(board, team, yut_num);
-				cout << "Enter key를 누르면 다음턴이 진행됩니다.." << endl;
-				if (_kbhit()) {
-					iChar = _getch();
-					if (iChar == '\r') break;
-				}
-				Sleep(1000);
-			}
+			iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
 
 			if (yut_num == 4 || yut_num == 3) {
 				cout << "모 또는 윷이 나와서 한번더 !!" << endl;
@@ -92,6 +64,10 @@ void Game_Manager::multiPlay() {
 		}
 		else {
 			// string 받고 순서대로 처리
+			system("cls");
+			iohandler.showScore(redTeamScore, blueTeamScore);
+			iohandler.showBoard(board, team, yut_num);
+
 			string recv_message = tcp_net.recv_message();
 			yut_num = recv_message[1] - '0';
 			select_Mal_Idx = recv_message[2] - '0';
@@ -103,38 +79,20 @@ void Game_Manager::multiPlay() {
 			Sleep(2000);
 
 			team = recv_message[0] - '0';
+			if (endGame_Check()) break;
 		}
 	}
+
+	tcp_net.disConnect(); // 연결 해제
 }
 
 
 void Game_Manager::singlePlay() {
-	team = 0; // 팀 & 턴 
 	while (true) {
 		system("cls");
-		yut_num = select_Yut(false);
-
-		while (true) { // 말 선택 -> 말 이동 프로세스
-			int select_Mal_Idx = select_Mal(team); // 말 선택
-			bool move_possible = move_Mal(team, select_Mal_Idx,false); // 말 이동
-			if (move_possible) break;
-		}
-
+		PlayProcess(false);
 		if (endGame_Check()) break; // 승리 조건 검사
-
-		
-		while (true){
-			char iChar;
-			system("cls");
-			iohandler.showScore(redTeamScore, blueTeamScore);
-			iohandler.showBoard(board, team, yut_num);
-			cout << "Enter key를 누르면 다음턴이 진행됩니다.." << endl;
-			if (_kbhit()) {
-				iChar = _getch();
-				if (iChar == '\r') break;
-			}
-			Sleep(1000);
-		}
+		iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
 
 		if (yut_num == 4 || yut_num == 3) {
 			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
@@ -148,21 +106,11 @@ void Game_Manager::singlePlay() {
 }
 
 void Game_Manager::AIPlay() {
-	team = 0; // 팀 & 턴 
 	while (true) {
 		system("cls");
-		
 		int mal_num;
-		int select_Mal_Idx;
-		bool move_possible;
-
 		if (team == 0) { // RED 팀이면 사람이 선택
-			yut_num = select_Yut(false);
-			while (true) { // 말 선택 -> 말 이동 프로세스
-				select_Mal_Idx = select_Mal(team); // 말 선택
-				move_possible = move_Mal(team, select_Mal_Idx, false); // 말 이동
-				if (move_possible) break;
-			}
+			PlayProcess(false);
 		}
 		else { // BLUE 팀이면 AI가 선택
 			yut_num = select_Yut(true);
@@ -180,20 +128,7 @@ void Game_Manager::AIPlay() {
 		}
 
 		if (endGame_Check()) break; // 승리 조건 검사
-
-		while (true) {
-			char iChar;
-			system("cls");
-			iohandler.showScore(redTeamScore, blueTeamScore);
-			iohandler.showBoard(board, team, yut_num);
-			cout << "Enter key를 누르면 다음턴이 진행됩니다.." << endl;
-			if (_kbhit()) {
-				iChar = _getch();
-				if (iChar == '\r') break;
-			}
-			Sleep(1000);
-		}
-
+		iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
 
 		if (yut_num == 4 || yut_num == 3) {
 			cout << "모 또는 윷이 나와서 한번더 !!" << endl;
@@ -206,53 +141,25 @@ void Game_Manager::AIPlay() {
 	}
 }
 
-int Game_Manager::select_Mal(int team) {
-	system("cls");
-	iohandler.showScore(redTeamScore, blueTeamScore);
-	iohandler.showBoard(board, team, yut_num);
-	iohandler.showMalList(player[team]);
-	return iohandler.selectMal(player[team]); // 이동하고싶은 말 선택
-}
-
-
-
-int Game_Manager::select_Mal_AI(int team , int mal_num) {
-	system("cls");
-	iohandler.showScore(redTeamScore, blueTeamScore);
-	iohandler.showBoard(board, team, yut_num);
-	iohandler.showMalList(player[team]);
-	return iohandler.selectAIMal(player[team], mal_num);
-}
-
-
 
 int Game_Manager::select_Yut(bool AImode) {
+	int time = 0;
+	while (true) {
+		system("cls");
+		int iChar;
+		int yut_num = do_Gae_Girl_Yut_Mo();
+		iohandler.showYutUI(team, yut_num);
+		Sleep(200);
 
-	if (AImode) {
-		int time = 0;
-		while (true) {
-			system("cls");
-			int iChar;
-			int yut_num = do_Gae_Girl_Yut_Mo();
-			iohandler.showYutUI(team, yut_num);
-			Sleep(250);
-
+		if (AImode) {
 			if (time == 3) return do_Gae_Girl_Yut_Mo();
-			else time++; 
+			else time++;
 		}
-	}
-	else {
-		while (true) {
-			system("cls");
-			int iChar;
-			int yut_num = do_Gae_Girl_Yut_Mo();
-			iohandler.showYutUI(team, yut_num);
-
+		else {
 			if (_kbhit()) {
 				iChar = _getch();
 				if (iChar == '\r') return do_Gae_Girl_Yut_Mo();
 			}
-			Sleep(200);
 		}
 	}
 }
@@ -313,6 +220,31 @@ bool Game_Manager::endGame_Check() {
 	return false;
 }
 
+int Game_Manager::select_Mal(int team) {
+	system("cls");
+	iohandler.showScore(redTeamScore, blueTeamScore);
+	iohandler.showBoard(board, team, yut_num);
+	iohandler.showMalList(player[team]);
+	return iohandler.selectMal(player[team]); // 이동하고싶은 말 선택
+}
+
+int Game_Manager::select_Mal_AI(int team, int mal_num) {
+	system("cls");
+	iohandler.showScore(redTeamScore, blueTeamScore);
+	iohandler.showBoard(board, team, yut_num);
+	iohandler.showMalList(player[team]);
+	return iohandler.selectAIMal(player[team], mal_num);
+}
+
+void Game_Manager::PlayProcess(bool AImode){
+	yut_num = select_Yut(AImode);
+	while (true) { // 말 선택 -> 말 이동 프로세스
+		select_Mal_Idx = select_Mal(team); // 말 선택
+		move_possible = move_Mal(team, select_Mal_Idx, AImode); // 말 이동
+		if (move_possible) break;
+	}
+}
+
 
 int Game_Manager::do_Gae_Girl_Yut_Mo() {
 	srand((unsigned int)time(NULL)); // seed 값으로 현재값 부여
@@ -348,6 +280,9 @@ void Game_Manager::playerInit(int size) {
 }
 
 Game_Manager::Game_Manager() {
+	team = 0;
+	select_Mal_Idx = -1;
+	move_possible = false;
 	playerInit(3);
 }
 
