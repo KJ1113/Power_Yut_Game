@@ -16,7 +16,6 @@ public:
 	void setTeam(int input);
 	void setScore(int input);
 	
-
 	Player();
 	~Player();
 };

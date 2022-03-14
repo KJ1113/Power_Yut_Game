@@ -17,6 +17,11 @@
 #define WHITE 15 
 
 const int MAX_SIZE = 11;
+string IOhandler::inputMessage(){
+	string input;
+	cin >> input;
+	return input;
+}
 int IOhandler::StartMenu(){
 	int num = 0;
 	cout << "---------------------------------------------------------------------------" << endl;
@@ -46,20 +51,18 @@ void IOhandler::showYutUI(int team, int yut_num){
 
 	cout << "\n\n\n\n\n\n" << endl;
 	if (team == 0) {
-		textcolor(LIGHTRED, BLACK);
+		textColorInit(LIGHTRED, BLACK);
 		cout << "                               RED";
-		textcolor(WHITE, BLACK);
+		textColorInit(WHITE, BLACK);
 	}
 	else {
-		textcolor(BLUE, BLACK);
+		textColorInit(BLUE, BLACK);
 		cout << "                               BLUE";
-		textcolor(WHITE, BLACK);
+		textColorInit(WHITE, BLACK);
 	}
 	cout << " 팀의 차례 입니다. Enter Key로 윷을 던지세요!" << endl;
 	cout << "\n";
-
 	cout << "                                        ┌──┐  ┌──┐  ┌──┐  ┌──┐" << endl;
-
 	if (yut_num == 0) {
 		cout << "                                        │  │  │ X│  │ X│  │ X│" << endl;
 		cout << "                                        │  │  │  │  │  │  │  │" << endl;
@@ -134,8 +137,9 @@ int IOhandler::selectAIMal(Player& p, int num) {
 	return output-1;
 }
 
-
-
+void IOhandler::ouputMessage(string output){
+	cout << output << endl;
+}
 
 void IOhandler::showBoard(Board& board, int turn, int yut) {
 	CONSOLE_CURSOR_INFO cursorInfo = { 0, };
@@ -149,14 +153,14 @@ void IOhandler::showBoard(Board& board, int turn, int yut) {
 				Mal* mal_point = board.getBoardPiece(i, j).getMalPoint();
 				if (mal_point != NULL && mal_point->getlife()) {
 					if (mal_point->getTeam() == 1) {
-						textcolor(LIGHTRED, BLACK);
+						textColorInit(LIGHTRED, BLACK);
 						showMal(mal_point);
-						textcolor(WHITE, BLACK);
+						textColorInit(WHITE, BLACK);
 					}
 					else {
-						textcolor(BLUE, BLACK);
+						textColorInit(BLUE, BLACK);
 						showMal(mal_point);
-						textcolor(WHITE, BLACK);
+						textColorInit(WHITE, BLACK);
 					}
 				}
 				else {
@@ -191,9 +195,7 @@ int IOhandler::selectMove(Mal& mal , Board& board ,pair<int, int> move_point){
 	return 0;
 }
 
-
 int IOhandler::selectAIMove(Mal& mal, Board& board, pair<int, int> move_point){
-
 	showMovePos(mal, board, move_point);
 	int time = 0;
 	cout << "AI가 선택중입니다.." <<endl;
@@ -243,14 +245,14 @@ void IOhandler::nextTurn( int redTeamScore , int blueTeamScore, Board& board,int
 
 void IOhandler::showTurn(int turn){
 	if (turn == 0) {
-		textcolor(LIGHTRED, BLACK);
+		textColorInit(LIGHTRED, BLACK);
 		cout << "RED";
-		textcolor(WHITE, BLACK);
+		textColorInit(WHITE, BLACK);
 	}
 	else {
-		textcolor(BLUE, BLACK);
+		textColorInit(BLUE, BLACK);
 		cout << "BLUE";
-		textcolor(WHITE, BLACK);
+		textColorInit(WHITE, BLACK);
 	}
 	cout << " 팀의 턴 입니다." << endl;
 }
@@ -328,9 +330,9 @@ void IOhandler::showMovePos(Mal& mal, Board& board, pair<int, int> move_point){
 		for (int j = 0; j < MAX_SIZE; j++) {
 			if (board.getBoardPiece(i, j).getIsMove()) {
 				if (move_point.first == i && move_point.second == j) {
-					textcolor(YELLOW, BLACK);
+					textColorInit(YELLOW, BLACK);
 					cout << "★\t";
-					textcolor(WHITE, BLACK);
+					textColorInit(WHITE, BLACK);
 				}
 				else {
 					showBoardPiece(i, j);
@@ -424,7 +426,7 @@ void IOhandler::showYutOnBoard(int team , int line , int yut){
 	}
 }
 
-void IOhandler::textcolor(int foreground, int background){
+void IOhandler::textColorInit(int foreground, int background){
 	int color = foreground + background * 16;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }

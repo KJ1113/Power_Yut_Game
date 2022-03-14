@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <windows.h>
+#include <string>
 #include "Board.h"
 #include "Player.h"
 using namespace std;
@@ -11,6 +12,7 @@ class IOhandler {
 
 public :
 	// Input
+	string inputMessage();
 	int StartMenu();
 	int selectMal(Player& p);
 	int selectMove(Mal &mal, Board& board ,pair<int, int> move_point);
@@ -20,6 +22,7 @@ public :
 	void nextTurn(int redTeamScore, int blueTeamScore, Board& board, int team, int yut_num);
 
 	// Output
+	void ouputMessage(string output);
 	void showBoard(Board& board, int turn, int yut);
 	void showTurn(int turn);
 	void showMalList(Player &p);
@@ -33,5 +36,5 @@ public :
 	void showSelectPossible(Player& p);
 
 	// Color
-	void textcolor(int foreground, int background);
+	void textColorInit(int foreground, int background);
 };

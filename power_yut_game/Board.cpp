@@ -3,7 +3,6 @@
 Board_Piece &Board::getBoardPiece(int y, int x){
 	return bp[y][x];
 }
-
 pair<int, int> Board::getMovePoint(int y, int x, int yut_num){
 	pair<int, int> output;
 	if (y == -1 && x == -1) {

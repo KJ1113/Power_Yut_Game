@@ -3,8 +3,6 @@
 #define BUFSIZE 1024
 #define _CRT_SECURE_NO_WARNINGS
 
-
-
 #include <stdio.h>
 #include <winsock2.h>
 #include <string>
@@ -15,6 +13,7 @@ class TCP_Network {
 
 private:
 	bool server_mode;
+	char IP [BUFSIZE] = "127.0.0.1";
 	WSADATA wsaData;
 	SOCKET hSocket;
 	SOCKET hServSock;
@@ -26,6 +25,7 @@ private:
 	void linkSoketPoint();
 
 public:
+	void setIP(string input);
 	void serverModeOn();
 	void clientModeOn();
 	void disConnect();

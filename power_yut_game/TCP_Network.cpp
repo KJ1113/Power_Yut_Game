@@ -5,6 +5,13 @@ void TCP_Network::linkSoketPoint(){
 	else tmpSocket = &hSocket;
 }
 
+void TCP_Network::setIP(string input){
+	memset(IP,0,sizeof(IP));
+	for (int i = 0; i < input.size() ;i++) {
+		IP[i] = input[i];
+	}
+}
+
 void TCP_Network::serverModeOn(){
 	server_mode = true;
 
@@ -35,7 +42,7 @@ void TCP_Network::clientModeOn(){
 
 	memset(&servAddr, 0, sizeof(servAddr));
 	servAddr.sin_family = AF_INET;
-	servAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+	servAddr.sin_addr.s_addr = inet_addr(IP);
 	servAddr.sin_port = htons(5555);
 
 	connect(hSocket, (SOCKADDR*)&servAddr, sizeof(servAddr));
