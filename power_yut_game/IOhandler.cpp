@@ -56,7 +56,7 @@ void IOhandler::showYutUI(int team, int yut_num){
 		textColorInit(WHITE, BLACK);
 	}
 	else {
-		textColorInit(BLUE, BLACK);
+		textColorInit(LIGHTBLUE, BLACK);
 		cout << "                               BLUE";
 		textColorInit(WHITE, BLACK);
 	}
