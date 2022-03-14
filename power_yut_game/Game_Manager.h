@@ -20,6 +20,8 @@ private:
 	int blueTeamScore;
 	int select_Mal_Idx;
 	int server_or_client;
+
+	bool kill; // 매턴 말을 잡았는지 아닌지 체크
 	bool move_possible;
 
 	AI ai; // 킹공지능
@@ -45,7 +47,7 @@ public:
 	int select_Mal_AI(int team, int mal_num); //AI 말선택
 	int select_Yut(bool AImode); // 말선택 UI, 입력 기능 , 파라미터로 ai 유무검사
 
-	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // 이동위치가 결정되면, 이동 후, 이동 성공 유무를 판별하여 알려줌
+	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // ★★★★★ 이동위치가 결정되면, 이동 후, 이동 성공 유무를 판별하여 알려줌 
 	bool endGame_Check();// 게임 종료 체크
 
 	int do_Gae_Girl_Yut_Mo(); // 도개걸윷모 랜덤생성

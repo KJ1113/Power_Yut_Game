@@ -307,6 +307,7 @@ void Board::lastPiece_check(Mal* point_mal){
 		point_mal->setLife(false);
 		point_mal->setPos(-2,-2);
 		lastPiece_check(point_mal->getPointChild());
+		this->getBoardPiece(point_mal->getX(), point_mal->getX()).disConnectPoint(point_mal);
 	}
 }
 

@@ -158,7 +158,7 @@ void IOhandler::showBoard(Board& board, int turn, int yut) {
 						textColorInit(WHITE, BLACK);
 					}
 					else {
-						textColorInit(BLUE, BLACK);
+						textColorInit(LIGHTBLUE, BLACK);
 						showMal(mal_point);
 						textColorInit(WHITE, BLACK);
 					}
@@ -198,12 +198,14 @@ int IOhandler::selectMove(Mal& mal , Board& board ,pair<int, int> move_point){
 int IOhandler::selectAIMove(Mal& mal, Board& board, pair<int, int> move_point){
 	showMovePos(mal, board, move_point);
 	int time = 0;
-	cout << "AI가 선택중입니다.." <<endl;
+	cout << "상대편이 선택중입니다.";
 	while (true) {
-		Sleep(700);
+		cout << ".";
+		Sleep(200);
 		if (time == 3) break;
 		time++;
 	}
+	cout << endl;
 	return 1;
 }
 
@@ -250,7 +252,7 @@ void IOhandler::showTurn(int turn){
 		textColorInit(WHITE, BLACK);
 	}
 	else {
-		textColorInit(BLUE, BLACK);
+		textColorInit(LIGHTBLUE, BLACK);
 		cout << "BLUE";
 		textColorInit(WHITE, BLACK);
 	}

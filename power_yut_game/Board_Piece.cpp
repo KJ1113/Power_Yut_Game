@@ -14,12 +14,13 @@ void Board_Piece::setMal(Mal* tmp){
 }
 
 void Board_Piece::disConnectPoint(Mal* tmp){
-	tmp->setPos(-1,-1);
-	if (tmp->getPointChild() != NULL) {
-		disConnectPoint(tmp->getPointChild());
+	tmp->setPos(-1,-1); // 원래 자리로 되돌리고 
+	if (tmp->getPointChild() != NULL) { // 자식이 있다면
+		disConnectPoint(tmp->getPointChild()); // 또 자식이 있다면
+		tmp->setChild(NULL); // 자식없음
+		tmp->setIsChild(false); // 모두 자식없음으로 처리
 	}
-	tmp->setChild(NULL);
-	tmp->setIsChild(false); // 모두 자식없음으로 처리
+	this->setMal(NULL);
 }
 
 void Board_Piece::connectPoint(Mal* tmp , Mal *child) {
@@ -32,27 +33,35 @@ void Board_Piece::connectPoint(Mal* tmp , Mal *child) {
 		connectPoint(tmp->getPointChild(), child);
 	}
 }
-void Board_Piece::linkedPoint(Mal * child){
+int Board_Piece::linkedPoint(Mal * input_mal){ // 상대편 말을 잡으면 1을 반환, 아니면 0을 반환
 
 	if (mal != NULL) { // 해당위치에 mal (말)이 있을때.
-		if (mal->getTeam() == child-> getTeam()) { // 같은 팀일때
-			if (mal->getPointChild() == NULL) {
-				mal->setChild(child);
-				child->setIsChild(true);
+
+		if (mal->getTeam() == input_mal-> getTeam()) { // 같은 팀일때
+
+			if (mal->getPointChild() == NULL) { // 자식이 없는 자리로 들어왔을때
+
+				mal->setChild(input_mal);
+				input_mal->setIsChild(true);
 				mal->getPointChild()->setPos(mal->getY(),mal->getX());
 			}
 			else {
-				connectPoint(mal->getPointChild(), child);
+				connectPoint(mal->getPointChild(), input_mal);
 			}
+
+			return 0;
 		}
 		else { // 다른 팀일때
 			Mal* tmp_point = this->mal;
-			mal = child;
 			disConnectPoint(tmp_point);
+			this->mal = input_mal;
+
+			return 1;
 		}
 	}
 	else {
-		mal = child;
+		mal = input_mal;
+		return 0;
 	}
 }
 Board_Piece::Board_Piece() {

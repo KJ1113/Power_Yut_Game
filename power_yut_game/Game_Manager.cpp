@@ -57,7 +57,7 @@ void Game_Manager::multiPlay() {
 			team = recv_message[0] - '0';
 
 			provide_GameUI();
-			Sleep(1500);
+			Sleep(1000);
 			if (endGame_Check()) break;
 		}
 	}
@@ -87,7 +87,7 @@ void Game_Manager::AIPlay() {
 			yut_num = select_Yut(true);
 			while (true) {
 				mal_num = ai.getSelectMal(player[1], board, yut_num);
-				Sleep(1500);
+				Sleep(250);
 				select_Mal_Idx = select_Mal_AI(team, mal_num);
 				Sleep(250);
 				move_possible = move_Mal(team, select_Mal_Idx, true); // 말 이동
@@ -106,13 +106,11 @@ int Game_Manager::select_Yut(bool AImode) {
 	int time = 0;
 	while (true) {
 		system("cls");
-		int yut_num = do_Gae_Girl_Yut_Mo();
-		iohandler.showYutUI(team, yut_num);
-		Sleep(200);
+		iohandler.showYutUI(team, time);
+		Sleep(500);
 
 		if (AImode) {
 			if (time == 3) return do_Gae_Girl_Yut_Mo();
-			else time++;
 		}
 		else {
 			if (_kbhit()) {
@@ -120,6 +118,9 @@ int Game_Manager::select_Yut(bool AImode) {
 				if (iChar == '\r') return do_Gae_Girl_Yut_Mo();
 			}
 		}
+
+		time++;
+		if (time == 5) time = 0;
 	}
 }
 
@@ -151,11 +152,11 @@ bool Game_Manager::move_Mal(int team, int select_Mal_Idx , bool AImode) {
 		}
 
 		point_mal->setPos(nY, nX);
-		board.getBoardPiece(nY, nX).linkedPoint(point_mal);
+		kill = board.getBoardPiece(nY, nX).linkedPoint(point_mal);
 
 		if (nY == 10 && nX == 10) board.lastPiece_check(&player[team].getMal(select_Mal_Idx)); // 종료위치에 도달한다면?
 		iohandler.ouputMessage("이동중입니다..");
-		Sleep(500);
+		Sleep(1000);
 		return true; // 이동 성공을 알려줌
 	}
 }
@@ -223,7 +224,9 @@ void Game_Manager::playProcess(bool AImode){
 
 int Game_Manager::do_Gae_Girl_Yut_Mo() {
 	srand((unsigned int)time(NULL)); // seed 값으로 현재값 부여
-	return rand() % 5;
+	int idx = rand() % 10;
+	int arr[10] = {0,0,0,1,1,1,2,2,3,4};
+	return arr[idx];
 }
 
 int Game_Manager::getScore(int team) {
@@ -255,9 +258,11 @@ void Game_Manager::playerInit(int size) {
 }
 
 void Game_Manager::nextTeam() {
-	if (yut_num == 4 || yut_num == 3) {
+	if (yut_num == 4 || yut_num == 3 || kill == true) {
 
-		iohandler.ouputMessage("모 또는 윷이 나와서 한번더 !!");
+		if (kill == 1) iohandler.ouputMessage("잡았으니까 한번더 !!");
+		else iohandler.ouputMessage("모 또는 윷이 나와서 한번더 !!");
+
 		team = team;
 		Sleep(1000);
 	}

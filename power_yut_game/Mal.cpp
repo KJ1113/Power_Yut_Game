@@ -1,11 +1,10 @@
 #include "Mal.h"
 
-
 int Mal::getChild_Cnt(){
-	if (child == NULL) {
+	if (child_point == NULL) {
 		return 0;
 	}
-	return 1 + child->getChild_Cnt();
+	return 1 + child_point->getChild_Cnt();
 }
 
 int Mal::getNum() {
@@ -33,7 +32,7 @@ bool Mal::getlife(){
 }
 
 Mal* Mal::getPointChild(){
-	return child;
+	return child_point;
 }
 
 void Mal::setTeam(int input){
@@ -54,7 +53,7 @@ void Mal::setLife(bool input){
 }
 
 void Mal::setChild(Mal *input){
-	 this->child =input;
+	 this->child_point =input;
 }
 
 void Mal::setNum(int input){
@@ -64,9 +63,9 @@ void Mal::setNum(int input){
 Mal::Mal() {
 	isChild = false; //자식여부
 	life = true; // 생존여부
-	child = NULL;
+	child_point = NULL;
 }
 
 Mal::~Mal() {
-	delete child;
+	delete child_point;
 }

@@ -11,7 +11,7 @@ private:
 	int y, x; // y x 말판에서 좌표
 	bool isChild; //본인이 자식인지 아닌지
 	bool life; // 생존여부
-	Mal *child; // 자식
+	Mal *child_point; // 자식포인터
 
 public:
 
