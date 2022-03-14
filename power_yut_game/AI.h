@@ -1,4 +1,6 @@
 #pragma once
+#pragma warning(disable: 4819)
+
 #include "Board.h"
 #include "Player.h"
 #include <vector>

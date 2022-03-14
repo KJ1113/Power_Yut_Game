@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable: 4819)
 #include "TCP_Network.h"
 #include "Board.h"
 #include "Player.h"
