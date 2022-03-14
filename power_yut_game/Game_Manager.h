@@ -41,7 +41,7 @@ public:
 	void playProcess(bool AImode); // 공통된 게임 진행 코드
 	void nextTeam(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감
 	void provide_GameUI(); // 보드 상황, 점수 UI 제공
-	void init_Network();
+	int init_Network();
 
 	int select_Mal(int team); // 이동하고 싶은 말선택, int 로 말 번호를 반환함
 	int select_Mal_AI(int team, int mal_num); //AI 말선택

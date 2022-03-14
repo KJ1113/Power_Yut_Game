@@ -6,7 +6,7 @@ void TCP_Network::linkSoketPoint(){
 }
 
 void TCP_Network::setIP(string input){
-	memset(IP,0,sizeof(IP));
+	memset(IP, 0, sizeof(IP));
 	for (int i = 0; i < input.size() ;i++) {
 		IP[i] = input[i];
 	}
@@ -85,6 +85,7 @@ void TCP_Network::recv_message(){
 			for (int i = 0; i < strlen(message); i++) {
 				recvMessage += message[i];
 			}
+			break;
 		}
 	}
 }

@@ -302,10 +302,10 @@ void Board::pieceInit(){
 	}
 }
 
-void Board::lastPiece_check(Mal* point_mal){
+void Board::endPoint_Init(Mal* point_mal){
 	if (point_mal != NULL) {
 		point_mal->setLife(false); // life false Ã³¸®·Î ¸Ê¹ÛÀ¸·Î º¸³¿
-		lastPiece_check(point_mal->getPointChild());
+		endPoint_Init(point_mal->getPointChild());
 		this->getBoardPiece(point_mal->getX(), point_mal->getX()).disConnectPoint(point_mal);
 	}
 }

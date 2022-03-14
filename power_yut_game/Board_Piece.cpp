@@ -40,7 +40,6 @@ int Board_Piece::linkedPoint(Mal * input_mal){ // 상대편 말을 잡으면 1을 반환, �
 		if (mal->getTeam() == input_mal-> getTeam()) { // 같은 팀일때
 
 			if (mal->getPointChild() == NULL) { // 자식이 없는 자리로 들어왔을때
-
 				mal->setChild(input_mal);
 				input_mal->setIsChild(true);
 				mal->getPointChild()->setPos(mal->getY(),mal->getX());
@@ -48,7 +47,6 @@ int Board_Piece::linkedPoint(Mal * input_mal){ // 상대편 말을 잡으면 1을 반환, �
 			else {
 				connectPoint(mal->getPointChild(), input_mal);
 			}
-
 			return 0;
 		}
 		else { // 다른 팀일때

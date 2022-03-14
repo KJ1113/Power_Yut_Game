@@ -26,14 +26,27 @@ void Game_Manager::runPlay() {
 		default:
 			iohandler.ouputMessage("잘못 입력하였습니다.");
 		}
-
 		if (stop) break;
 	}
 }
 
 void Game_Manager::multiPlay() {
 	system("cls");
-	init_Network();
+
+	while (true) {
+		bool init = init_Network();
+		if (init == 1) {
+			iohandler.ouputMessage("연결성공.. 곧게임이 시작됩니다.");
+			break;
+		}
+		else if (init == -1) {
+			iohandler.ouputMessage("연결 종료..");
+			break;
+		}
+		else {
+			continue;
+		}
+	}
 
 	while (true) {
 		system("cls");
@@ -43,13 +56,13 @@ void Game_Manager::multiPlay() {
 			nextTeam();
 
 			// 전송
+			
 			tcp_net.send_message(team,yut_num, select_Mal_Idx);
 			if (endGame_Check()) break; // 승리 조건 검사
 		}
 		else {
 			// string 받고 순서대로 처리
 			provide_GameUI();
-
 			tcp_net.recv_message();
 			yut_num = tcp_net.getYutNumMessage();
 			select_Mal_Idx = tcp_net.getMalIdxMessage();
@@ -61,7 +74,6 @@ void Game_Manager::multiPlay() {
 			if (endGame_Check()) break;
 		}
 	}
-
 	tcp_net.disConnect(); // 연결 해제
 }
 
@@ -87,7 +99,7 @@ void Game_Manager::AIPlay() {
 			yut_num = select_Yut(true);
 			while (true) {
 				mal_num = ai.getSelectMal(player[1], board, yut_num);
-				Sleep(250);
+				Sleep(100);
 				select_Mal_Idx = select_Mal_AI(team, mal_num);
 				Sleep(250);
 				move_possible = move_Mal(team, select_Mal_Idx, true); // 말 이동
@@ -153,9 +165,9 @@ bool Game_Manager::move_Mal(int team, int select_Mal_Idx , bool AImode) {
 		point_mal->setPos(nY, nX);
 		kill = board.getBoardPiece(nY, nX).linkedPoint(point_mal);
 
-		if (nY == 10 && nX == 10) board.lastPiece_check(&player[team].getMal(select_Mal_Idx)); // 종료위치에 도달한다면?
+		if (nY == 10 && nX == 10) board.endPoint_Init(&player[team].getMal(select_Mal_Idx)); // 종료위치에 도달한다면?
 		iohandler.ouputMessage("이동중입니다..");
-		Sleep(1000);
+		Sleep(800);
 		return true; // 이동 성공을 알려줌
 	}
 }
@@ -174,7 +186,6 @@ bool Game_Manager::endGame_Check() {
 		}
 		return true;
 	}
-
 	return false;
 }
 
@@ -184,19 +195,27 @@ void Game_Manager::provide_GameUI(){
 	iohandler.showBoard(board, team, yut_num);
 }
 
-void Game_Manager::init_Network(){
+int Game_Manager::init_Network(){
 	server_or_client = iohandler.selectServer();
 	if (server_or_client == 0) {
 		tcp_net.serverModeOn();
+		return 1;
 	}
-	else {
+	else if(server_or_client == 1){
 		iohandler.ouputMessage("서버 IP 주소를 입력해주세요");
 		string IP = iohandler.inputMessage();
 		tcp_net.setIP(IP);
 		tcp_net.clientModeOn();
+		return 1;
 	}
-	iohandler.ouputMessage("연결성공.. 곧게임이 시작됩니다.");
-	Sleep(1500);
+	else if (server_or_client == -1) {
+		iohandler.ouputMessage("종료 합니다.");
+		return -1;
+	}
+	else {
+		iohandler.ouputMessage("잘못 입력하셨습니다.");
+		return 0;
+	}
 }
 
 int Game_Manager::select_Mal(int team) {
@@ -257,11 +276,8 @@ void Game_Manager::playerInit(int size) {
 
 void Game_Manager::nextTeam() {
 	if (yut_num == 4 || yut_num == 3 || kill == true) {
-
 		if (kill == 1) iohandler.ouputMessage("잡았으니까 한번더 !!");
 		else iohandler.ouputMessage("모 또는 윷이 나와서 한번더 !!");
-
-		team = team;
 		Sleep(1000);
 	}
 	else {
