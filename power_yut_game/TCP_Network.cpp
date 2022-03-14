@@ -74,19 +74,29 @@ void TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 	send(*tmpSocket, send_message, strlen(send_message), 0); // 결과 메세지 전송
 }
 
-string TCP_Network::recv_message(){
+void TCP_Network::recv_message(){
 	int strLen = 0;
 	char message[BUFSIZE] = "";
+
 	linkSoketPoint();
 	while (true) {
 		if ((strLen = recv(*tmpSocket, message, BUFSIZE, 0)) != 0) {
-			string res = "";
+			recvMessage = "";
 			for (int i = 0; i < strlen(message); i++) {
-				res += message[i];
+				recvMessage += message[i];
 			}
-			return res;
 		}
 	}
+}
+
+int TCP_Network::getNextTeamMessage() {
+	return recvMessage[0]-'0';
+}
+int TCP_Network::getYutNumMessage(){
+	return recvMessage[1]-'0';
+}
+int TCP_Network::getMalIdxMessage(){
+	return recvMessage[2]-'0';
 }
 
 

@@ -39,22 +39,22 @@ void Game_Manager::multiPlay() {
 		system("cls");
 		if (team == server_or_client) {
 			playProcess(false);
-			if (endGame_Check()) break; // 승리 조건 검사
 			iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
 			nextTeam();
 
 			// 전송
 			tcp_net.send_message(team,yut_num, select_Mal_Idx);
+			if (endGame_Check()) break; // 승리 조건 검사
 		}
 		else {
 			// string 받고 순서대로 처리
 			provide_GameUI();
 
-			string recv_message = tcp_net.recv_message();
-			yut_num = recv_message[1] - '0';
-			select_Mal_Idx = recv_message[2] - '0';
+			tcp_net.recv_message();
+			yut_num = tcp_net.getYutNumMessage();
+			select_Mal_Idx = tcp_net.getMalIdxMessage();
 			move_Mal(team, select_Mal_Idx, true);
-			team = recv_message[0] - '0';
+			team = tcp_net.getNextTeamMessage();
 
 			provide_GameUI();
 			Sleep(1000);
@@ -118,7 +118,6 @@ int Game_Manager::select_Yut(bool AImode) {
 				if (iChar == '\r') return do_Gae_Girl_Yut_Mo();
 			}
 		}
-
 		time++;
 		if (time == 5) time = 0;
 	}
@@ -172,8 +171,7 @@ bool Game_Manager::endGame_Check() {
 		}
 		else {
 			iohandler.ouputMessage("Blue 팀의 승리 입니다!!");
-		} 
-
+		}
 		return true;
 	}
 
@@ -224,8 +222,8 @@ void Game_Manager::playProcess(bool AImode){
 
 int Game_Manager::do_Gae_Girl_Yut_Mo() {
 	srand((unsigned int)time(NULL)); // seed 값으로 현재값 부여
-	int idx = rand() % 10;
-	int arr[10] = {0,0,0,1,1,1,2,2,3,4};
+	int idx = rand() % 14;
+	int arr[15] = {0,0,0,0,1,1,1,1,2,2,2,3,3,4};
 	return arr[idx];
 }
 

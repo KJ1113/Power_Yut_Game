@@ -15,6 +15,7 @@ class TCP_Network {
 private:
 	bool server_mode;
 	char IP [BUFSIZE] = "127.0.0.1";
+	string recvMessage;
 	WSADATA wsaData;
 	SOCKET hSocket;
 	SOCKET hServSock;
@@ -31,5 +32,8 @@ public:
 	void clientModeOn();
 	void disConnect();
 	void send_message(int next_team, int yut_num, int mal_idx);
-	string recv_message();
+	void recv_message();
+	int getYutNumMessage();
+	int getNextTeamMessage();
+	int getMalIdxMessage();
 };
