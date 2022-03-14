@@ -2,7 +2,7 @@
 void Game_Manager::runPlay() {
 	while (true) {
 		system("cls");
-		int num = iohandler.StartMenu();
+		int num = iohandler.startMenu();
 		bool stop = false;
 
 		switch (num) {

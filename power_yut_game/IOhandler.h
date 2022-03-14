@@ -13,7 +13,7 @@ class IOhandler {
 public :
 	// Input
 	string inputMessage();
-	int StartMenu();
+	int startMenu();
 	int selectMal(Player& p);
 	int selectMove(Mal &mal, Board& board ,pair<int, int> move_point);
 	int selectAIMal(Player& p , int num);

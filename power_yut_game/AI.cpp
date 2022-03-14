@@ -105,11 +105,11 @@ int AI::getTeamValue(Mal* mal, Board& board, int yut_num){
 
 	if (bp.getMalPoint() != NULL) {
 		if (mal->getTeam() != bp.getMalPoint()->getTeam()) { // 다른 팀 말이 있다면
-			cout << "상대편 말을 잡는 방향을 선택" << endl;
+			//cout << "상대편 말을 잡는 방향을 선택" << endl;
 			return 20;
 		}
 		else { // 같은 팀 말이 있다면
-			cout << "같은 팀 말과 합치는 방향을 선택" << endl;
+			//cout << "같은 팀 말과 합치는 방향을 선택" << endl;
 			return 10;
 		}
 	}

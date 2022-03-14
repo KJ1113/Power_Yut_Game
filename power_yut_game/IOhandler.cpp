@@ -22,7 +22,7 @@ string IOhandler::inputMessage(){
 	cin >> input;
 	return input;
 }
-int IOhandler::StartMenu(){
+int IOhandler::startMenu(){
 	int num = 0;
 	cout << "---------------------------------------------------------------------------" << endl;
 	cout << "l  #      #  #     #  ######      #####   #            #       #      #   l" << endl;
