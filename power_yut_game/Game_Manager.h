@@ -22,7 +22,7 @@ private:
 	int select_Mal_Idx = -1;
 
 	int yut_num; // 윷
-	int yut_ratio_arr[15] = { 0,0,0,0,1,1,1,1,2,2,2,3,3,4 };
+	int yut_ratio_arr[15] = { 0,0,0,1,1,1,1,2,2,2,3,3,4,4 };
 
 	bool killed_possible = false; // 매턴 말을 잡았는지 아닌지 체크
 	bool move_possible = false; // 이동 가능한지 체크
@@ -43,6 +43,7 @@ public:
 	
 	void play_Single_Mode(bool AImode); // 싱글플레이 & AI 모드 실행
 	void play_Multi_Mode(); // 멀티플레이 실행
+	void play_AIvsAI_Mode(); // 이스터에그. AI 끼리 붙음
 
 	void run_Game_Process(bool AImode); // 공통된 게임 진행 코드
 	void run_Next_Team(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감

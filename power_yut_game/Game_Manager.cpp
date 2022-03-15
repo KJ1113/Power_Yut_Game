@@ -29,6 +29,11 @@ void Game_Manager::start_Game() {
 			stop = true;
 			break;
 
+		case 5:
+			system("cls");
+			play_AIvsAI_Mode();
+			break;
+
 		default:
 			iohandler.ouputMessage("잘못 입력하였습니다.");
 		}
@@ -75,14 +80,17 @@ void Game_Manager::run_Game_Process(bool AImode) {
 
 		if (!AImode) {
 			select_Mal_Idx = select_Mal(team); // 말 선택
+			run_Move_Mal(team, select_Mal_Idx, AImode);
 		}
 		else {
 			Sleep(250);
 			select_Mal_Idx = ai.getSelectMal(player[1], board, yut_num) - 1;
 			Sleep(250);
+			run_Move_Mal(team, select_Mal_Idx, AImode);
+			Sleep(500);
 		}
 
-		run_Move_Mal(team, select_Mal_Idx, AImode);
+
 		if (move_possible) break;
 	}
 }
@@ -159,6 +167,22 @@ void Game_Manager::play_Multi_Mode() {
 		}
 	}
 	tcp_net.disConnect(); // 연결 해제
+}
+
+void Game_Manager::play_AIvsAI_Mode(){
+
+	while (true) {
+
+		system("cls");
+		run_Game_Process(true);
+
+		if (check_End_Game()) {
+			Sleep(1000);
+			break; // 승리 조건 검사
+		}
+		iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num);
+		run_Next_Team();
+	}
 }
 
 void Game_Manager::run_Move_Mal(int team, int select_Mal_Idx , bool AImode) {
