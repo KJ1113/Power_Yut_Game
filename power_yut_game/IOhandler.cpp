@@ -14,7 +14,7 @@
 #define LIGHTRED 12 
 #define LIGHTMAGENTA 13 
 #define YELLOW 14 
-#define WHITE 15 
+#define WHITE 15 //test
 
 const int MAX_SIZE = 11;
 string IOhandler::inputMessage(){
