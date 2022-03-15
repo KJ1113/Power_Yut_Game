@@ -3,9 +3,7 @@
 using namespace std;
 
 int main() {
-
 	Game_Manager gm;
-	gm.runPlay();
-
+	gm.start_Game();
 	return 0;
 }

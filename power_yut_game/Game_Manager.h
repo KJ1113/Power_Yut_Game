@@ -15,14 +15,18 @@ using namespace std;
 class Game_Manager{
 private:
 	int team; // 현재 진행중인 팀, 턴
-	int yut_num; // 윷
+	
 	int redTeamScore;
 	int blueTeamScore;
 	int select_Mal_Idx;
 	int server_or_client;
 
-	bool kill; // 매턴 말을 잡았는지 아닌지 체크
-	bool move_possible;
+	int yut_num; // 윷
+	int yut_ratio_arr[15] = { 0,0,0,0,1,1,1,1,2,2,2,3,3,4 };
+
+	bool killed_possible = false; // 매턴 말을 잡았는지 아닌지 체크
+	bool move_possible = false; // 이동 가능한지 체크
+	
 
 	AI ai; // 킹공지능
 	string IP; // IP 주소
@@ -32,26 +36,28 @@ private:
 	IOhandler iohandler; // 입출력 매니저
 
 public:
-	
+
+	void start_Game(); // 메인화면 실행
 	int getScore(int team); // 말 이동후 점수 계산
-	void runPlay(); // 메인화면 실행
-	void singlePlay(); // 싱글플레이 실행
-	void multiPlay(); // 멀티플레이 실행
-	void AIPlay(); // 인공지능 플레이 실행
-	void playProcess(bool AImode); // 공통된 게임 진행 코드
-	void nextTeam(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감
-	void provide_GameUI(); // 보드 상황, 점수 UI 제공
-	int init_Network();
+	int get_Do_Gae_Girl_Yut_Mo(); // 도개걸윷모 랜덤생성
+	
+	void play_Single_Mode(); // 싱글플레이 실행
+	void play_Multi_Mode(); // 멀티플레이 실행
+	void play_AI_Mode(); // 인공지능 플레이 실행
+
+	void run_Game_Process(bool AImode); // 공통된 게임 진행 코드
+	void run_Next_Team(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감
+	void run_Move_Mal(int team, int select_Mal_Idx, bool AImode); // 이동위치가 결정후, 말들을 움직임.
+	
+	void init_Network();
+	void init_Player(int size); // 최초 실행시 플레이어 말 번호 초기화
 
 	int select_Mal(int team); // 이동하고 싶은 말선택, int 로 말 번호를 반환함
-	int select_Mal_AI(int team, int mal_num); //AI 말선택
 	int select_Yut(bool AImode); // 말선택 UI, 입력 기능 , 파라미터로 ai 유무검사
 
-	bool move_Mal(int team , int select_Mal_Idx , bool AImode); // ★★★★★ 이동위치가 결정되면, 이동 후, 이동 성공 유무를 판별하여 알려줌 
-	bool endGame_Check();// 게임 종료 체크
-
-	int do_Gae_Girl_Yut_Mo(); // 도개걸윷모 랜덤생성
-	void playerInit(int size); // 최초 실행시 플레이어 말 번호 초기화
+	bool check_End_Game();// 게임 종료 체크
+	void provide_BoardUI(); // 보드 상황, 점수 UI 제공
+	 
 
 	Game_Manager();
 	~Game_Manager();

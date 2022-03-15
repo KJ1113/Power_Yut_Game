@@ -15,13 +15,24 @@
 #define LIGHTMAGENTA 13 
 #define YELLOW 14 
 #define WHITE 15 //testd
-
 const int MAX_SIZE = 11;
+
 string IOhandler::inputMessage(){
 	string input;
 	cin >> input;
 	return input;
 }
+
+void IOhandler::ouputMessage(string output) {
+	cout << output << endl;
+}
+
+void IOhandler::textColorInit(int foreground, int background) {
+	int color = foreground + background * 16;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+
 int IOhandler::startMenu(){
 	int num = 0;
 	cout << "---------------------------------------------------------------------------" << endl;
@@ -129,16 +140,10 @@ int IOhandler::selectMal(Player& p){
 			return (output - 1);
 		}
 	}
-	return output;
 }
-int IOhandler::selectAIMal(Player& p, int num) {
-	int output = num;
+int IOhandler::selectAIMal(Player& p, int AI_select_num) {
 	cout << "이동시킬 말을 선택해주세요 (숫자로):";
-	return output-1;
-}
-
-void IOhandler::ouputMessage(string output){
-	cout << output << endl;
+	return AI_select_num -1;
 }
 
 void IOhandler::showBoard(Board& board, int turn, int yut) {
@@ -426,9 +431,4 @@ void IOhandler::showYutOnBoard(int team , int line , int yut){
 		cout << endl;
 		cout << endl;
 	}
-}
-
-void IOhandler::textColorInit(int foreground, int background){
-	int color = foreground + background * 16;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
