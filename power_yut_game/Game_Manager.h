@@ -41,9 +41,8 @@ public:
 	int getScore(int team); // 말 이동후 점수 계산
 	int get_Do_Gae_Girl_Yut_Mo(); // 도개걸윷모 랜덤생성
 	
-	void play_Single_Mode(); // 싱글플레이 실행
+	void play_Single_Mode(bool AImode); // 싱글플레이 & AI 모드 실행
 	void play_Multi_Mode(); // 멀티플레이 실행
-	void play_AI_Mode(); // 인공지능 플레이 실행
 
 	void run_Game_Process(bool AImode); // 공통된 게임 진행 코드
 	void run_Next_Team(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감

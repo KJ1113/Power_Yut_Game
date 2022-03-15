@@ -37,7 +37,11 @@ void TCP_Network::serverModeOn(){
 
 void TCP_Network::clientModeOn(){
 	server_mode = false;
+
+	// 윈속 사용
 	WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+	//소켓 생성
 	hSocket = socket(PF_INET, SOCK_STREAM, 0);
 
 	memset(&servAddr, 0, sizeof(servAddr));
@@ -54,7 +58,7 @@ void TCP_Network::disConnect(){
 	WSACleanup();
 }
 
-void TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
+bool TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 	char send_message[BUFSIZE] = "";
 
 	if(next_team == 0) strcat(send_message, "0");
@@ -72,9 +76,11 @@ void TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 
 	linkSoketPoint();
 	send(*tmpSocket, send_message, strlen(send_message), 0); // 결과 메세지 전송
+
+	return true;
 }
 
-void TCP_Network::recv_message(){
+bool TCP_Network::recv_message(){
 	int strLen = 0;
 	char message[BUFSIZE] = "";
 
@@ -85,7 +91,7 @@ void TCP_Network::recv_message(){
 			for (int i = 0; i < strlen(message); i++) {
 				recvMessage += message[i];
 			}
-			break;
+			return true;
 		}
 	}
 }

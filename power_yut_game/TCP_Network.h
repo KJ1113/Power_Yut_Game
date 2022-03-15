@@ -31,8 +31,8 @@ public:
 	void serverModeOn();
 	void clientModeOn();
 	void disConnect();
-	void send_message(int next_team, int yut_num, int mal_idx);
-	void recv_message();
+	bool send_message(int next_team, int yut_num, int mal_idx);
+	bool recv_message();
 	int getYutNumMessage();
 	int getNextTeamMessage();
 	int getMalIdxMessage();

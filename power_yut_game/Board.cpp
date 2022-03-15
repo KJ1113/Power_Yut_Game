@@ -258,7 +258,14 @@ pair<int, int> Board::getMovePoint(int y, int x, int yut_num){
 	return output;
 }
 
-void Board::pieceInit(){
+void Board::init_Piece(){
+
+	for (int i = 0; i < 11; i++) {
+		for (int j = 0; j < 11; j++) {
+			getBoardPiece(i, j).init_Piece();
+		}
+	}
+
 	for (int i = 0; i < 11;i ++) {
 		for (int j = 0; j < 11 ;j++) {
 			if (i == 0 && j == 0) bp[i][j].setIsMove(true);
@@ -311,7 +318,7 @@ void Board::endPoint_Init(Mal* point_mal){
 }
 
 Board::Board(){
-	pieceInit();
+	init_Piece();
 }
 
 Board::~Board(){

@@ -9,6 +9,10 @@ Mal* Board_Piece::getMalPoint(){
 void Board_Piece::setIsMove(bool input) {
 	this->isMove = input;
 }
+void Board_Piece::init_Piece(){
+	isMove = false;
+	mal = NULL;
+}
 void Board_Piece::setMal(Mal* tmp){
 	this->mal = tmp;
 }

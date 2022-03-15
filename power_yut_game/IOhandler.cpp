@@ -207,7 +207,7 @@ int IOhandler::selectAIMove(Mal& mal, Board& board, pair<int, int> move_point){
 	while (true) {
 		cout << ".";
 		Sleep(200);
-		if (time == 3) break;
+		if (time == 4) break;
 		time++;
 	}
 	cout << endl;

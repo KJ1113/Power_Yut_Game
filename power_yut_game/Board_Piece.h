@@ -15,6 +15,7 @@ public:
 
 	void setMal(Mal* tmp);
 	void setIsMove(bool input);
+	void init_Piece();
 
 	int linkedPoint(Mal* m);
 	void connectPoint(Mal* tmp, Mal* m);
