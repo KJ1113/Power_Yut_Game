@@ -14,12 +14,12 @@ using namespace std;
 
 class Game_Manager{
 private:
-	int team; // 현재 진행중인 팀, 턴
+	int team = 0; // 현재 진행중인 팀, 턴
 	
 	int redTeamScore;
 	int blueTeamScore;
-	int select_Mal_Idx;
 	int server_or_client;
+	int select_Mal_Idx = -1;
 
 	int yut_num; // 윷
 	int yut_ratio_arr[15] = { 0,0,0,0,1,1,1,1,2,2,2,3,3,4 };

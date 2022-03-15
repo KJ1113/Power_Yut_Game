@@ -14,7 +14,7 @@ class IOhandler {
 public :
 	// Input
 	string inputMessage();
-	int startMenu();
+	int selectMode();
 	int selectMal(Player& p);
 	int selectMove(Mal &mal, Board& board ,pair<int, int> move_point);
 	int selectAIMal(Player& p , int num);

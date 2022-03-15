@@ -33,7 +33,7 @@ void IOhandler::textColorInit(int foreground, int background) {
 }
 
 
-int IOhandler::startMenu(){
+int IOhandler::selectMode(){
 	int num = 0;
 	cout << "---------------------------------------------------------------------------" << endl;
 	cout << "l  #      #  #     #  ######      #####   #            #       #      #   l" << endl;
