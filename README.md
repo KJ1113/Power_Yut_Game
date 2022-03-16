@@ -1,6 +1,6 @@
 # Power_Yut_Game
 
-### C++ Console 환경에서 진행되는 윷놀이 게임입니다.
+## C++ Console 환경에서 진행되는 윷놀이 게임!!
 
 ### **플레이 LIST**
   * 싱글 플레이
@@ -32,7 +32,36 @@
 <br/>
 
 ***
+## Class List
 
+### Player
+- 게임 참여자 class
+
+|이름|접근자|Type|설명|비고|
+|:-:|:-:|:-:|:-:|:-:|
+|team|Private|int|플레이어 팀, 0 과 1로 구분한다.|val|
+|score|Private|int|플레이어 현재 스코어|val|
+|mal|Private|Mal[3]|플레이어가 보유한 말 배열, Size 3 |val|
+|getTeam|Public|int|플레이어 팀 number 반환|method|
+|getScore|Public|int|플레이어 점수 반환|method|
+|getMal|Public|Mal|Index Parameter 를 이용하여 사용자 말[index] 반환|method|
+|setTeam|Public|void|팀 number 부여|method|
+|setScore|Public|void|점수 부여|method|
+
+### AI
+|이름|접근자|Type|설명|비고|
+|:-:|:-:|:-:|:-:|:-:|
+|이름|접근자|Type|설명|비고|
+### Mal
+### Board
+### Board_Piece
+
+### Game_Manager
+
+### TCP_Network
+### IOhandler
+
+***
 ## UI
 
 |메뉴|이미지|
