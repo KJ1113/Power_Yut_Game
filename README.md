@@ -35,24 +35,39 @@
 ## Class List
 
 ### Player
-- 게임 참여자 class
+>게임 참여자 Class
 
-|이름|접근자|Type|설명|비고|
-|:-:|:-:|:-:|:-:|:-:|
-|team|Private|int|플레이어 팀, 0 과 1로 구분한다.|val|
-|score|Private|int|플레이어 현재 스코어|val|
-|mal|Private|Mal[3]|플레이어가 보유한 말 배열, Size 3 |val|
-|getTeam|Public|int|플레이어 팀 number 반환|method|
-|getScore|Public|int|플레이어 점수 반환|method|
-|getMal|Public|Mal|Index Parameter 를 이용하여 사용자 말[index] 반환|method|
-|setTeam|Public|void|팀 number 부여|method|
-|setScore|Public|void|점수 부여|method|
+|이름|접근자|Type|설명|Parameter|비고|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|team|Private|int|플레이어 팀, 0 과 1로 구분한다.|Parameter|val|
+|score|Private|int|플레이어 현재 스코어|Parameter|val|
+|mal|Private|Mal[3]|플레이어가 보유한 말 배열, Size 3 |Parameter|val|
+|getTeam|Public|int|플레이어 팀 number 반환|Parameter|method|
+|getScore|Public|int|플레이어 점수 반환|Parameter|method|
+|getMal|Public|Mal|Index Parameter 를 이용하여 사용자 말[index] 반환|Parameter|method|
+|setTeam|Public|void|팀 number 부여|Parameter|method|
+|setScore|Public|void|점수 부여|Parameter|method|
 
 ### AI
-|이름|접근자|Type|설명|비고|
-|:-:|:-:|:-:|:-:|:-:|
-|이름|접근자|Type|설명|비고|
+>AI 모드 실행시 사용되는 Class
+
+|이름|접근자|Type|설명|Parameter|비고|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|getSelectMal|public|int|알고리즘에 따라서 선택된 말 반환|Player& player, Board& board, int yut_num|method|
+|getMoveValue|public|int|말판의 위치에 따른 가중치 값 반환|Mal*mal, Board& board, int yut_num|method|
+|getChildValue|public|int|자식유무에 따른 가중치 값 반환|Mal* mal|method|
+|getTeamValue|public|int|말잡기, 합치기에 따른 가중치 값 반환|Mal* mal, Board& board, int yut_num|method|
+
+
 ### Mal
+>보드위에서 움직이는 Mal Class, 포인터를 활용하여 잡기,합치기 구현.
+
+|이름|접근자|Type|설명|Parameter|비고|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+
+
+
 ### Board
 ### Board_Piece
 
