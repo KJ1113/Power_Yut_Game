@@ -1,16 +1,6 @@
 #include "TCP_Network.h"
 
-void TCP_Network::linkSoketPoint(){
-	if (server_mode) tmpSocket = &hClientSock;
-	else tmpSocket = &hSocket;
-}
 
-void TCP_Network::setIP(string input){
-	memset(IP, 0, sizeof(IP));
-	for (int i = 0; i < input.size() ;i++) {
-		IP[i] = input[i];
-	}
-}
 
 void TCP_Network::serverModeOn(){
 	server_mode = true;
@@ -52,14 +42,9 @@ void TCP_Network::clientModeOn(){
 	connect(hSocket, (SOCKADDR*)&servAddr, sizeof(servAddr));
 }
 
-void TCP_Network::disConnect(){
-
-	closesocket(*tmpSocket);
-	WSACleanup();
-}
-
 bool TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 	char send_message[BUFSIZE] = "";
+	linkSoketPoint();
 
 	if(next_team == 0) strcat(send_message, "0");
 	else strcat(send_message, "1");
@@ -73,8 +58,6 @@ bool TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 	if (mal_idx == 0) strcat(send_message, "0");
 	else if (mal_idx == 1) strcat(send_message, "1");
 	else strcat(send_message, "2");
-
-	linkSoketPoint();
 
 	if (send(*tmpSocket, send_message, strlen(send_message), 0) == SOCKET_ERROR) {
 		return false;
@@ -94,32 +77,41 @@ bool TCP_Network::recv_message(){
 			return false;
 		}
 		else {
-
 			recvMessage = "";
 			for (int i = 0; i < strlen(message); i++) {
 				recvMessage += message[i];
 			}
 			return true;
-
-			/*if ((strLen = recv(*tmpSocket, message, BUFSIZE, 0)) != 0) {
-				recvMessage = "";
-				for (int i = 0; i < strlen(message); i++) {
-					recvMessage += message[i];
-				}
-				return true;
-			}*/
 		}
 	}
 }
 
+void TCP_Network::linkSoketPoint() {
+	if (server_mode) tmpSocket = &hClientSock;
+	else tmpSocket = &hSocket;
+}
+
+void TCP_Network::setIP(string input) {
+	memset(IP, 0, sizeof(IP));
+	for (int i = 0; i < input.size(); i++) {
+		IP[i] = input[i];
+	}
+}
+
+void TCP_Network::disConnect() {
+
+	closesocket(*tmpSocket);
+	WSACleanup();
+}
+
 int TCP_Network::getNextTeamMessage() {
-	return recvMessage[0]-'0';
+	return recvMessage[0] - '0';
 }
-int TCP_Network::getYutNumMessage(){
-	return recvMessage[1]-'0';
+int TCP_Network::getYutNumMessage() {
+	return recvMessage[1] - '0';
 }
-int TCP_Network::getMalIdxMessage(){
-	return recvMessage[2]-'0';
+int TCP_Network::getMalIdxMessage() {
+	return recvMessage[2] - '0';
 }
 
 

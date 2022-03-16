@@ -27,6 +27,10 @@ void IOhandler::ouputMessage(string output) {
 	cout << output << endl;
 }
 
+void IOhandler::ouputMessageEndl(string output){
+	cout << output << endl;
+}
+
 void IOhandler::textColorInit(int foreground, int background) {
 	int color = foreground + background * 16;
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);

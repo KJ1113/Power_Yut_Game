@@ -24,6 +24,7 @@ public :
 
 	// Output
 	void ouputMessage(string output);
+	void ouputMessageEndl(string output);
 	void showBoard(Board& board, int turn, int yut);
 	void showTurn(int turn);
 	void showMalList(Player &p);
