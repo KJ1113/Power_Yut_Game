@@ -18,7 +18,7 @@ private:
 	
 	int redTeamScore;
 	int blueTeamScore;
-	int server_or_client;
+	int server_or_client; // 네트워크 연결시 0 (서버) 또는 1 (클라이언트) 로 설정됨
 	int select_Mal_Idx = -1;
 
 	int yut_num; // 윷
