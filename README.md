@@ -118,16 +118,19 @@
 
 ### Game_Manager
 > 게임 진행 관련 Class.
-[Game_Manager.h 이동] (https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/Game_Manager.h)
+
+#### [Game_Manager.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/Game_Manager.h)
 
 
 ### TCP_Network
 > TCP 네트워크 Class.
-[TCP_Network.h 이동] (https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/TCP_Network.h)
+
+#### [TCP_Network.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/TCP_Network.h)
 
 ### IOhandler
 > 입출력 관련 Class.
-[IOhandler.h 이동] (https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/IOhandler.h)
+
+#### [IOhandler.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/IOhandler.h)
 
 ***
 ## UI
