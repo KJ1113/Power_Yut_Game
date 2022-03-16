@@ -6,6 +6,7 @@ using namespace std;
 class Mal
 {
 private:
+
 	int team; // 팀
 	int number; //번호
 	int y, x; // y x 말판에서 좌표
@@ -27,7 +28,6 @@ public:
 	void setLife(bool input);
 	void setChild(Mal *input);
 	void setNum(int input);
-
 
 	bool getIsChild();
 	bool getlife();

@@ -22,7 +22,7 @@ private:
 	int select_Mal_Idx = -1;
 
 	int yut_num; // 윷
-	int yut_ratio_arr[15] = { 0,0,0,1,1,1,1,2,2,2,3,3,4,4 };
+	int yut_ratio_arr[15] = { 0,0,1,1,1,1,2,2,2,2,3,3,3,4 };
 
 	bool killed_possible = false; // 매턴 말을 잡았는지 아닌지 체크
 	bool move_possible = false; // 이동 가능한지 체크

@@ -67,7 +67,7 @@ int Board_Piece::linkedPoint(Mal * input_mal){ // 상대편 말을 잡으면 1을 반환, �
 	}
 }
 Board_Piece::Board_Piece() {
-	mal = NULL;
+
 }
 
 Board_Piece::~Board_Piece(){

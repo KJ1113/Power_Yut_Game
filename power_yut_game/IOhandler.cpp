@@ -130,6 +130,9 @@ void IOhandler::showSelectPossible(Player& p) {
 	}
 	cout << ")" << endl;
 }
+void IOhandler::sleepShowUi(int time){
+	Sleep(time);
+}
 int IOhandler::selectMal(Player& p){
 	int output = 0 ;
 	showSelectPossible(p);

@@ -36,6 +36,7 @@ public :
 	void showMovePos(Mal& mal, Board& board, pair<int, int> move_point);
 	void showBoardPiece(int i , int j);
 	void showSelectPossible(Player& p);
+	void sleepShowUi(int time);
 
 	// Color
 	void textColorInit(int foreground, int background);
