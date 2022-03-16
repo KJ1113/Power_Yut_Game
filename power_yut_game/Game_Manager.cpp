@@ -5,7 +5,6 @@ void Game_Manager::start_Game() {
 		int num = iohandler.selectMode();
 		bool stop = false;
 
-
 		switch (num) {
 
 		case 1:
@@ -139,31 +138,42 @@ void Game_Manager::play_Multi_Mode() {
 		system("cls");
 		if (team == server_or_client) {
 			run_Game_Process(false);
+			run_Next_Team();
+			iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
+
+			if (!tcp_net.send_message(team, yut_num, select_Mal_Idx)) {
+				iohandler.ouputMessage("네트워크 오류로 종료합니다. 상대편이 나갔습니다.");
+				Sleep(2000);
+				break;
+			}
 
 			if (check_End_Game()) {
 				Sleep(1000);
 				break; // 승리 조건 검사
 			}
-
-			iohandler.nextTurn(redTeamScore, blueTeamScore, board, team, yut_num); // 엔터로 다음턴
-			run_Next_Team();
-			tcp_net.send_message(team, yut_num, select_Mal_Idx);
 		}
 		else {
 			// string message 받고 순서대로 처리
 			provide_BoardUI();
 
-			tcp_net.recv_message();
-			yut_num = tcp_net.getYutNumMessage();
-			select_Mal_Idx = tcp_net.getMalIdxMessage();
+			if (tcp_net.recv_message()) {
+				int curTeam = team; // 현재팀
+				yut_num = tcp_net.getYutNumMessage();
+				select_Mal_Idx = tcp_net.getMalIdxMessage();
+				team = tcp_net.getNextTeamMessage(); // 다음팀(턴) 설정
+				run_Move_Mal(curTeam, select_Mal_Idx, true); // ai 모드에서 이용했던 함수를 재사용
 
-			run_Move_Mal(team, select_Mal_Idx, true); // ai 모드에서 이용했던 함수를 재사용
-
-			if (check_End_Game()) {
-				Sleep(1000);
-				break; // 승리 조건 검사
+				if (check_End_Game()) {
+					Sleep(1000);
+					break; // 승리 조건 검사
+				}
 			}
-			team = tcp_net.getNextTeamMessage(); // 다음팀(턴) 설정
+			else {
+				iohandler.ouputMessage("네트워크 오류로 종료합니다. 상대편이 나갔습니다.");
+				Sleep(2000);
+				break;
+			}
+
 		}
 	}
 	tcp_net.disConnect(); // 연결 해제
@@ -247,6 +257,10 @@ void Game_Manager::provide_BoardUI(){
 	system("cls");
 	iohandler.showScore(redTeamScore, blueTeamScore);
 	iohandler.showBoard(board, team, yut_num);
+}
+
+void Game_Manager::init_Game(){
+
 }
 
 void Game_Manager::init_Network(){

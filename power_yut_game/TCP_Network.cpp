@@ -75,9 +75,13 @@ bool TCP_Network::send_message(int next_team, int yut_num , int mal_idx){
 	else strcat(send_message, "2");
 
 	linkSoketPoint();
-	send(*tmpSocket, send_message, strlen(send_message), 0); // 결과 메세지 전송
 
-	return true;
+	if (send(*tmpSocket, send_message, strlen(send_message), 0) == SOCKET_ERROR) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 bool TCP_Network::recv_message(){
@@ -86,12 +90,24 @@ bool TCP_Network::recv_message(){
 
 	linkSoketPoint();
 	while (true) {
-		if ((strLen = recv(*tmpSocket, message, BUFSIZE, 0)) != 0) {
+		if (recv(*tmpSocket, message, BUFSIZE, 0) == SOCKET_ERROR) {
+			return false;
+		}
+		else {
+
 			recvMessage = "";
 			for (int i = 0; i < strlen(message); i++) {
 				recvMessage += message[i];
 			}
 			return true;
+
+			/*if ((strLen = recv(*tmpSocket, message, BUFSIZE, 0)) != 0) {
+				recvMessage = "";
+				for (int i = 0; i < strlen(message); i++) {
+					recvMessage += message[i];
+				}
+				return true;
+			}*/
 		}
 	}
 }

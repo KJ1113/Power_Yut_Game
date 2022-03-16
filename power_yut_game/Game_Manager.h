@@ -49,6 +49,7 @@ public:
 	void run_Next_Team(); // 다음팀으로 변경, 윷 또는 모로 나오면 안넘어감
 	void run_Move_Mal(int team, int select_Mal_Idx, bool AImode); // 이동위치가 결정후, 말들을 움직임.
 	
+	void init_Game();
 	void init_Network();
 	void init_Player(int size); // 최초 실행시 플레이어 말 번호 초기화
 
