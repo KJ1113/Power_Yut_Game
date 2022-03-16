@@ -274,7 +274,7 @@ void Game_Manager::init_Network(){
 		tcp_net.serverModeOn();
 	}
 	else if(server_or_client == 1){
-		iohandler.ouputMessage("서버 IP 주소를 입력해주세요 :");
+		iohandler.ouputMessage("서버 IP 주소를 입력해주세요 : ");
 		tcp_net.setIP(iohandler.inputMessage());
 		tcp_net.clientModeOn();
 	}

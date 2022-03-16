@@ -24,7 +24,7 @@ string IOhandler::inputMessage(){
 }
 
 void IOhandler::ouputMessage(string output) {
-	cout << output << endl;
+	cout << output;
 }
 
 void IOhandler::ouputMessageEndl(string output){
