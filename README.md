@@ -32,9 +32,9 @@
 <br/>
 
 ***
-## Class List
+## Class List (Model, View, Control)
 
-### Player
+### Player (Model)
 >게임 참여자 Class
 
 |이름|접근자|Type|설명|Parameter|비고|
@@ -48,7 +48,7 @@
 |setTeam|Public|void|팀 number 부여|Parameter|method|
 |setScore|Public|void|점수 부여|Parameter|method|
 
-### AI
+### AI (Model)
 >AI 모드 실행시 사용되는 Class
 
 |이름|접근자|Type|설명|Parameter|비고|
@@ -59,7 +59,7 @@
 |getTeamValue|public|int|말잡기, 합치기에 따른 가중치 값 반환|Mal* mal, Board& board, int yut_num|method|
 
 
-### Mal
+### Mal (Model)
 >보드위에서 움직이는 Mal Class, 포인터를 활용하여 잡기,합치기 구현.
 
 |이름|접근자|Type|설명|Parameter|비고|
@@ -87,7 +87,7 @@
 |setNum|public|void|말번호 입력|int input|method|
 
 
-### Board
+### Board (Model)
 > 보드 Class.
 
 |이름|접근자|Type|설명|Parameter|비고|
@@ -99,7 +99,7 @@
 |endPoint_Init|public|void|말이 마지막 위치 도달하면 Board_Piece 초기화 |Mal* point_mal|method|
 
 
-### Board_Piece
+### Board_Piece (Model)
 > 보드 조각 Class.
 
 |이름|접근자|Type|설명|Parameter|비고|
@@ -116,18 +116,18 @@
 |disConnectPoint|public|void|연결 해제|Mal* m|method|
 
 
-### Game_Manager
+### Game_Manager (Control)
 > 게임 진행 관련 Class.
 
 #### [Game_Manager.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/Game_Manager.h)
 
 
-### TCP_Network
+### TCP_Network (Control)
 > TCP 네트워크 Class.
 
 #### [TCP_Network.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/TCP_Network.h)
 
-### IOhandler
+### IOhandler (View)
 > 입출력 관련 Class.
 
 #### [IOhandler.h 이동](https://github.com/KJ1113/Power_Yut_Game/blob/master/power_yut_game/IOhandler.h)
