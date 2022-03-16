@@ -2,7 +2,7 @@
 
 ### C++ Console 환경에서 진행되는 윷놀이 게임입니다.
 
-### **게임 진행 리스트**
+### **플레이 LIST**
   * 싱글 플레이
   * 멀티 플레이
   * 인공지능 플레이
@@ -41,3 +41,15 @@
 |윷던지기|<img src ="https://user-images.githubusercontent.com/37038119/157171911-9a02f17d-e38b-43a8-8fe7-3d8248735fe3.png" width = "500px">|
 |말 선택|<img src ="https://user-images.githubusercontent.com/37038119/157172120-f74e17dc-fdfe-400d-909a-27d82eb4b12c.png" width = "500px">|
 |이동위치 확인|<img src ="https://user-images.githubusercontent.com/37038119/157171969-ac4fcaa6-adea-440d-8b3a-7ad933f07c1d.png" width = "500px">|
+
+***
+## 멀티 플레이 설정
+
+|설명|이미지|
+|:-:|:-:|
+|멀티 플레이 선택|<img src ="https://user-images.githubusercontent.com/37038119/158515818-a44d5396-816b-4ee3-b3db-733574680d1d.png" width = "500px">|
+|방장은 "0" 입력|<img src ="https://user-images.githubusercontent.com/37038119/158515820-c153a2f1-d3f4-456e-9d77-440440ca3533.png" width = "500px">|
+|참여자는 "1" 입력후 IP 주소입력|<img src ="https://user-images.githubusercontent.com/37038119/158515824-0493215f-4feb-432c-b6d0-dfde3d29c6db.png" width = "500px">|
+
+
+
