@@ -73,13 +73,13 @@
 |child_point|private|*Mal|자식 연결 포인터| |val|
 |getNum|public|int|말 번호 반환|int|method|
 |getTeam|public|int|팀 반환|int|method|
-|getY|public|int|:-:|y 축 반환|method|
-|getX|public|int|:-:|x 축 반환|method|
+|getY|public|int| |y 축 반환|method|
+|getX|public|int| |x 축 반환|method|
 |getChild_Cnt|public|int|연결된 자식 말 갯수 반환| |method|
 |getIsChild|public|bool|자식 유무 반환| |method|
 |getlife|public|bool|생존 유무 반환| |method|
 |getPointChild|public|*Mal|자식말 포인터 반환| |method|
-|setTeam|public|void|팀 입력/int input|method|
+|setTeam|public|void|팀 입력 / int input| |method|
 |setPos|public|void|위치 입력|int inputY, int inputX|method|
 |setIsChild|public|void|자식 유무 입력|bool input|method|
 |setLife|public|void|생존 여부 입력|bool input|method|
