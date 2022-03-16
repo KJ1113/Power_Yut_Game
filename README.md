@@ -1,8 +1,8 @@
 # Power_Yut_Game
 
-### C++ Console 환경에서 진행되는 윷놀이 게임입니다.
+## C++ Console 환경에서 진행되는 윷놀이 게임!!
 
-### **게임 진행 리스트**
+### **플레이 LIST**
   * 싱글 플레이
   * 멀티 플레이
   * 인공지능 플레이
@@ -25,14 +25,43 @@
 <br/>
 
 ### **인공지능 플레이**
-	- 사용자는 RED 팀, 인공지능은 BLUE 팀으로 시작합니다.
-	- 인공지능 턴일때, 인공지능이 자동으로 말을 선택하고 이동합니다.
-	- 인공지능은 말을 업거나, 상대편 말을 잡는것을 좋아합니다.
-	- 인공지능은 대각선으로 이동할수있는 위치를 선호합니다.
+1. 사용자는 RED 팀, 인공지능은 BLUE 팀으로 시작합니다.
+2. 인공지능 턴일때, 인공지능이 자동으로 말을 선택하고 이동합니다.
+3. 인공지능은 말을 업거나, 상대편 말을 잡는것을 좋아합니다.
+4. 인공지능은 대각선으로 이동할수있는 위치를 선호합니다.
 <br/>
 
 ***
+## Class List
 
+### Player
+- 게임 참여자 class
+
+|이름|접근자|Type|설명|비고|
+|:-:|:-:|:-:|:-:|:-:|
+|team|Private|int|플레이어 팀, 0 과 1로 구분한다.|val|
+|score|Private|int|플레이어 현재 스코어|val|
+|mal|Private|Mal[3]|플레이어가 보유한 말 배열, Size 3 |val|
+|getTeam|Public|int|플레이어 팀 number 반환|method|
+|getScore|Public|int|플레이어 점수 반환|method|
+|getMal|Public|Mal|Index Parameter 를 이용하여 사용자 말[index] 반환|method|
+|setTeam|Public|void|팀 number 부여|method|
+|setScore|Public|void|점수 부여|method|
+
+### AI
+|이름|접근자|Type|설명|비고|
+|:-:|:-:|:-:|:-:|:-:|
+|이름|접근자|Type|설명|비고|
+### Mal
+### Board
+### Board_Piece
+
+### Game_Manager
+
+### TCP_Network
+### IOhandler
+
+***
 ## UI
 
 |메뉴|이미지|
@@ -41,3 +70,15 @@
 |윷던지기|<img src ="https://user-images.githubusercontent.com/37038119/157171911-9a02f17d-e38b-43a8-8fe7-3d8248735fe3.png" width = "500px">|
 |말 선택|<img src ="https://user-images.githubusercontent.com/37038119/157172120-f74e17dc-fdfe-400d-909a-27d82eb4b12c.png" width = "500px">|
 |이동위치 확인|<img src ="https://user-images.githubusercontent.com/37038119/157171969-ac4fcaa6-adea-440d-8b3a-7ad933f07c1d.png" width = "500px">|
+
+***
+## 멀티 플레이 설정
+
+|설명|이미지|
+|:-:|:-:|
+|멀티 플레이 선택|<img src ="https://user-images.githubusercontent.com/37038119/158515818-a44d5396-816b-4ee3-b3db-733574680d1d.png" width = "500px">|
+|방장은 "0" 입력|<img src ="https://user-images.githubusercontent.com/37038119/158515820-c153a2f1-d3f4-456e-9d77-440440ca3533.png" width = "500px">|
+|참여자는 "1" 입력후 IP 주소입력|<img src ="https://user-images.githubusercontent.com/37038119/158515824-0493215f-4feb-432c-b6d0-dfde3d29c6db.png" width = "500px">|
+
+
+
