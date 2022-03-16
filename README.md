@@ -63,10 +63,27 @@
 >보드위에서 움직이는 Mal Class, 포인터를 활용하여 잡기,합치기 구현.
 
 |이름|접근자|Type|설명|Parameter|비고|
-|:-:|:-:|:-:|:-:|:-:|:-:|
-|:-:|:-:|:-:|:-:|:-:|:-:|
-
-
+|team|private|int|:-:|  |val|
+|number|private|int|:-:|-|val|
+|y|private|int|:-:| |val|
+|x|private|int|:-:| |val|
+|isChild|private|bool|:-:| |val|
+|life|private|bool|:-:| |val|
+|child_point|private|*Mal|:-:| |val|
+|getNum|public|int|:-:|int|method|
+|getTeam|public|int|:-:|int|method|
+|getY|public|int|:-:|int|method|
+|getX|public|int|:-:|int|method|
+|getChild_Cnt|public|int|:-:| |method|
+|setTeam|public|void|:-:|int input|method|
+|setPos|public|void|:-:|int inputY, int inputX|method|
+|setIsChild|public|void|:-:|bool input|method|
+|setLife|public|void|:-:|bool input|method|
+|setChild|public|void|:-:|Mal *input|method|
+|setNum|public|void|:-:|int input|method|
+|getIsChild|public|bool|:-:| |method|
+|getlife|public|bool|:-:| |method|
+|getPointChild|public|*Mal|:-:| |method|
 
 ### Board
 ### Board_Piece
