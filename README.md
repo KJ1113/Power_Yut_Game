@@ -63,34 +63,59 @@
 >보드위에서 움직이는 Mal Class, 포인터를 활용하여 잡기,합치기 구현.
 
 |이름|접근자|Type|설명|Parameter|비고|
-|team|private|int|:-:|  |val|
-|number|private|int|:-:|-|val|
-|y|private|int|:-:| |val|
-|x|private|int|:-:| |val|
-|isChild|private|bool|:-:| |val|
-|life|private|bool|:-:| |val|
-|child_point|private|*Mal|:-:| |val|
-|getNum|public|int|:-:|int|method|
-|getTeam|public|int|:-:|int|method|
-|getY|public|int|:-:|int|method|
-|getX|public|int|:-:|int|method|
-|getChild_Cnt|public|int|:-:| |method|
-|setTeam|public|void|:-:|int input|method|
-|setPos|public|void|:-:|int inputY, int inputX|method|
-|setIsChild|public|void|:-:|bool input|method|
-|setLife|public|void|:-:|bool input|method|
-|setChild|public|void|:-:|Mal *input|method|
-|setNum|public|void|:-:|int input|method|
-|getIsChild|public|bool|:-:| |method|
-|getlife|public|bool|:-:| |method|
-|getPointChild|public|*Mal|:-:| |method|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|team|private|int|팀|  |val|
+|number|private|int|말 번호|-|val|
+|y|private|int|말판에서 y축 좌표| |val|
+|x|private|int|말판에서 x축 좌표| |val|
+|isChild|private|bool|자식 유무, 있다면 true| |val|
+|life|private|bool|생존여부, 마지막 위치에 도착하면 false| |val|
+|child_point|private|*Mal|자식 연결 포인터| |val|
+|getNum|public|int|말 번호 반환|int|method|
+|getTeam|public|int|팀 반환|int|method|
+|getY|public|int|:-:|y 축 반환|method|
+|getX|public|int|:-:|x 축 반환|method|
+|getChild_Cnt|public|int|연결된 자식 말 갯수 반환| |method|
+|getIsChild|public|bool|자식 유무 반환| |method|
+|getlife|public|bool|생존 유무 반환| |method|
+|getPointChild|public|*Mal|자식말 포인터 반환| |method|
+|setTeam|public|void|팀 입력/int input|method|
+|setPos|public|void|위치 입력|int inputY, int inputX|method|
+|setIsChild|public|void|자식 유무 입력|bool input|method|
+|setLife|public|void|생존 여부 입력|bool input|method|
+|setChild|public|void|자식이 될 말 입력|Mal *input|method|
+|setNum|public|void|말번호 입력|int input|method|
+
 
 ### Board
+|이름|접근자|Type|설명|Parameter|비고|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|bp|private|Board_Piece[11][11]|Board_Piece class 를 11 * 11 배열로 만든것| |val|
+|getBoardPiece|public|&Board_Piece|각 위치에 맞는 Board_Piece 주소값 반환 |int y , int x|method|
+|getMovePoint|public|pair<int, int>|말의 상황별 이동위치 반환 |int y ,int x, int yut_num|method|
+|init_Piece|public|void|팀| Board 초기화 |method|
+|endPoint_Init|public|void|말이 마지막 위치 도달하면 Board_Piece 초기화 |Mal* point_mal|method|
+
+
 ### Board_Piece
+|이름|접근자|Type|설명|Parameter|비고|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|isMove|private|bool|말이 이동가능한 위치 0 , 1| |val|
+|mal|private|*Mal|말판위에 말이 놓이면 연결됨| |val|
+|getIsMove|public|bool|이동유무 반환| |method|
+|getMalPoint|public|*Mal|현재 말판조각위의 말 포인터 반환| |method|
+|setMal|public|void|말 포인터 입력|Mal* tmp|method|
+|setIsMove|public|void|초기 이동유무 설정|bool input|method|
+|init_Piece|public|void|초기화 함수| |method|
+|linkedPoint|public|int|mal 변수와 연결, 0 또는 1을 반환하여 상대편말을 잡았는지 알려준다.|Mal* m|method|
+|connectPoint|public|void|재귀 함수를 이용하여 말포인터를 연결한다.|Mal* tmp, Mal* m|method|
+|disConnectPoint|public|void|연결 해제|Mal* m|method|
+
 
 ### Game_Manager
 
 ### TCP_Network
+
 ### IOhandler
 
 ***
