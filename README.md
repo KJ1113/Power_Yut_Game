@@ -88,6 +88,8 @@
 
 
 ### Board
+> 보드 Class.
+
 |이름|접근자|Type|설명|Parameter|비고|
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |bp|private|Board_Piece[11][11]|Board_Piece class 를 11 * 11 배열로 만든것| |val|
@@ -98,6 +100,8 @@
 
 
 ### Board_Piece
+> 보드 조각 Class.
+
 |이름|접근자|Type|설명|Parameter|비고|
 |:-:|:-:|:-:|:-:|:-:|:-:|
 |isMove|private|bool|말이 이동가능한 위치 0 , 1| |val|
@@ -113,10 +117,17 @@
 
 
 ### Game_Manager
-너...너무 많다...
+> 게임 진행 관련 Class.
+[Game_Manager.h 이동] (링크)
+
+
 ### TCP_Network
+> TCP 네트워크 Class.
+[TCP_Network.h 이동] (링크)
 
 ### IOhandler
+> 입출력 관련 Class.
+[IOhandler.h 이동] (링크)
 
 ***
 ## UI
